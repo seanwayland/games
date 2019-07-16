@@ -64,13 +64,14 @@ addEventToButton(2, function(event) {
                     // alert(num);
                 } else if (n == num) {
 
-                    htmlFormElement.innerHTML = htmlFormElement.innerHTML = '<p> You guessed it   !<br /> </p><div class="form-group"><label for="btn1name">Number</label><input type="number" class="form-control" name="number" required="required" id="btn1name" placeholder="Number" /></div>';
-                    htmlFormElement.append(submitBtn);
-                    //  alert(guesses);
+                    document
+                        .getElementById('renderhere')
+                        .innerHTML = '<p> You guessed it !!! </p>'
+                        //  alert(guesses);
                 }
 
 
-                if (guesses == 5 && n == num) {
+                if (guesses == 5 && n != num) {
                     document
                         .getElementById('renderhere')
                         .innerHTML = '<p> You ran out of guesses.  I guessed ' + num + '</p>'
