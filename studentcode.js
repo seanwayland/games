@@ -50,19 +50,34 @@ addEventToButton(2, function(event) {
             guesses++;
             if (n < 1 || n > 20) { alert("invalid input please enter a number between 1 and 20 ") } else {
 
+
+
                 if (n < num) {
 
-                    htmlFormElement.innerHTML = htmlFormElement.innerHTML = '<p> Too Low  !<br /> </p><div class="form-group"><label for="btn1name">Number</label><input type="number" class="form-control" name="number" required="required" id="btn1name" placeholder="Number" /></div>';
+                    htmlFormElement.innerHTML = htmlFormElement.innerHTML = '<p> Too Low. Guess again  !<br /> </p><div class="form-group"><label for="btn1name">Number</label><input type="number" class="form-control" name="number" required="required" id="btn1name" placeholder="Number" /></div>';
                     htmlFormElement.append(submitBtn);
+                    // alert(num);
+                } else if (n > num) {
 
-
-                    alert(guesses);
-                } else {
-
-                    htmlFormElement.innerHTML = htmlFormElement.innerHTML = '<p> Too High  !<br /> </p><div class="form-group"><label for="btn1name">Number</label><input type="number" class="form-control" name="number" required="required" id="btn1name" placeholder="Number" /></div>';
+                    htmlFormElement.innerHTML = htmlFormElement.innerHTML = '<p> Too High. Guess again  !<br /> </p><div class="form-group"><label for="btn1name">Number</label><input type="number" class="form-control" name="number" required="required" id="btn1name" placeholder="Number" /></div>';
                     htmlFormElement.append(submitBtn);
-                    alert(guesses);
+                    // alert(num);
+                } else if (n == num) {
+
+                    htmlFormElement.innerHTML = htmlFormElement.innerHTML = '<p> You guessed it   !<br /> </p><div class="form-group"><label for="btn1name">Number</label><input type="number" class="form-control" name="number" required="required" id="btn1name" placeholder="Number" /></div>';
+                    htmlFormElement.append(submitBtn);
+                    //  alert(guesses);
                 }
+
+
+                if (guesses == 5 && n == num) {
+                    document
+                        .getElementById('renderhere')
+                        .innerHTML = '<p> You ran out of guesses.  I guessed ' + num + '</p>'
+                }
+
+
+
             }
         }
 
