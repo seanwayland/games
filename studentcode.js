@@ -1,19 +1,19 @@
 "use strict";
 
 
-/*
-### Button 2: Number guessing game
-Your code should:
+/**
+ ### Button 2: Number guessing game
+ Your code should:
  * Randomly select a number between 1 and 20
  * Prompt the user to enter a number (between 1 and 20).
-    * reject input outside this range, but do not count that as a guess
+ * reject input outside this range, but do not count that as a guess
  * If the user gets it right, display "You guessed correctly!"
  * If the user gets it wrong, prompt them to guess again
-    * If they guess too high, you should say "too high"
-    * If they guess too low, you should say "too low"
+ * If they guess too high, you should say "too high"
+ * If they guess too low, you should say "too low"
  * If the user gets it wrong five times, tell them they ran out of guesses and what the number was.
- 
-Cypress will be searching for:
+
+ Cypress will be searching for:
  * An `input` with a `type` set to `number` where I can type my guess
  * A `button` to submit my guess
  * A `span` with a property `data-output` set to `guesses` (which should start at 0)
@@ -123,9 +123,29 @@ addEventToButton(2, function (event) {
 });
 
 
+/**
+ * Button 3: To-do list
+
+ Your code should:
+
+ Allow users to add items to a to-do list by way of a text input field and an "Add" button
+ Allow users to "check" items off on this list
+ Allow users to delete checked items off the list by clicking "Delete"
+ You are not required to build a delete button for each item on the list, only "checked" items.
+
+ Cypress will be searching for:
+
+ An input field of type text
+ A button with text "Delete"
+ A button with text "Add"
+ A checkbox, followed by a label that matches what it entered.
+ */
+
+
 
 addEventToButton(3, function (event) {
 
+    // initial to do list
 
     var cars = ["Assessment one", "Assesment two", "Boids"];
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
@@ -155,6 +175,7 @@ addEventToButton(3, function (event) {
     var elements = document.createElement('div');
 
 
+    /// sort through array and generate title and button for each item in list
     for (var c in cars) {
 
         var newElement = document.createElement('div');
@@ -170,7 +191,7 @@ addEventToButton(3, function (event) {
 
     }
 
-
+   // entry form for to do list
     var entry = document.createElement("FORM");
     entry.setAttribute("id", "myForm");
     page3.append(entry);
@@ -274,6 +295,488 @@ addEventToButton(3, function (event) {
         document.getElementById('renderhere').append(elements);
 
     });
+
+
+});
+
+/**
+
+ Button 4: Nought and crosses
+
+ Your code should:
+
+ Render a table on the page in a 3x3 grid
+ Display whose turn it is by saying either "Noughts turn!" or "Crosses turn!"
+ When the game is won, display "Noughts wins!" or "Crosses wins!"
+ When the game is a draw, display "Draw!"
+ Cypress will be searching for:
+
+ A table
+ The text as above
+ The table should allow me to click on something in the cell or the cell itself
+ The cells should contain 'X' for a played cross and 'O' (Capital o) for played Nought
+ That I cannot play on an already played cell
+
+
+ */
+
+/**
+ *
+ *
+ * .container {
+    width: 223px;
+    background: lightpink;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 30px auto;
+    display: flex;
+    flex-flow: row wrap;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+
+ .box {
+    min-width: 70px;
+    min-height: 70px;
+    display: inline-block;
+    border: 2px solid lightpink;
+    background: white;
+    border-radius: 3px;
+    margin: 0;
+    padding: 0;
+}
+
+
+ */
+
+addEventToButton(4, function (event) {
+
+
+    let icon = 'X'
+
+    document.getElementById('renderhere').childNodes.forEach(value => value.remove());
+    document.getElementById('renderhere').innerHTML = "";
+
+    /*
+    <div class="messages">
+        <h2>Crosses start</h2>
+    </div>
+    <div class="instructions">
+        <p>Click in a box to play</p>
+    </div>
+
+     */
+    var messages = document.createElement('div');
+    messages.id = "mess";
+    messages.classname = "messages";
+    messages.innerHTML = "<h2>Crosses start</h2>";
+
+
+    var instructions = document.createElement('div');
+    instructions.id = "instructions";
+    instructions.classname = "instructions";
+    instructions.innerHTML = "<p>Click in a box to play</p>";
+
+    var idArray = ["tile0", "tile1", "tile2", "tile3", "tile4", "tile5", "tile6", "tile7", "tile8"];
+    var idtArray = ["ttile0", "ttile1", "ttile2", "ttile3", "ttile4", "ttile5", "ttile6", "ttile7", "ttile8"];
+
+
+    var box = document.createElement('div');
+
+    box.id = 'box';
+    box.className = "container";
+    box.setAttribute("style", "    width: 230px;\n" +
+        "    background: lightpink;\n" +
+        "    padding: 10px;\n" +
+        "    border-radius: 8px;\n" +
+        "    margin: 30px auto;\n" +
+        "    display: flex;\n" +
+        "    flex-flow: row wrap;\n" +
+        "    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);");
+
+    //for ( let i = 0 ; i < 9 ; i ++){
+
+    var tile0 = document.createElement('div');
+    tile0.id = idArray[0];
+    tile0.className = "box";
+    box.appendChild(tile0);
+    tile0.setAttribute("style", "    min-width: 70px;\n" +
+            "    min-height: 70px;\n" +
+            "    display: inline-block;\n" +
+            "    border: 2px solid lightpink;\n" +
+            "    background: white;\n" +
+            "    border-radius: 3px;\n" +
+            "    margin: 0;\n" +
+            "    padding: 0;");
+    var tileText0 = document.createElement('h1')
+    tileText0.id = idtArray[0];
+    tile0.appendChild(tileText0);
+    tileText0.setAttribute("style", "    line-height: 70px;\n" +
+            "    margin: 0;")
+    tileText0.innerHTML = "X";
+
+    var tile1 = document.createElement('div');
+    tile1.id = idArray[1];
+    tile1.className = "box";
+    box.appendChild(tile1);
+    tile1.setAttribute("style", "    min-width: 70px;\n" +
+        "    min-height: 70px;\n" +
+        "    display: inline-block;\n" +
+        "    border: 2px solid lightpink;\n" +
+        "    background: white;\n" +
+        "    border-radius: 3px;\n" +
+        "    margin: 0;\n" +
+        "    padding: 0;");
+    var tileText1 = document.createElement('h1')
+    tileText1.id = idtArray[1];
+    tile1.appendChild(tileText1);
+    tileText1.setAttribute("style", "    line-height: 70px;\n" +
+        "    margin: 0;")
+    tileText1.innerHTML = "X";
+
+    var tile2 = document.createElement('div');
+    tile2.id = idArray[2];
+    tile2.className = "box";
+    box.appendChild(tile1);
+    tile2.setAttribute("style", "    min-width: 70px;\n" +
+        "    min-height: 70px;\n" +
+        "    display: inline-block;\n" +
+        "    border: 2px solid lightpink;\n" +
+        "    background: white;\n" +
+        "    border-radius: 3px;\n" +
+        "    margin: 0;\n" +
+        "    padding: 0;");
+    var tileText2 = document.createElement('h1')
+    tileText2.id = idtArray[2];
+    tile2.appendChild(tileText2);
+    tileText2.setAttribute("style", "    line-height: 70px;\n" +
+        "    margin: 0;")
+    tileText2.innerHTML = "X";
+
+    var tile3 = document.createElement('div');
+    tile3.id = idArray[3];
+    tile3.className = "box";
+    box.appendChild(tile3);
+    tile3.setAttribute("style", "    min-width: 70px;\n" +
+        "    min-height: 70px;\n" +
+        "    display: inline-block;\n" +
+        "    border: 2px solid lightpink;\n" +
+        "    background: white;\n" +
+        "    border-radius: 3px;\n" +
+        "    margin: 0;\n" +
+        "    padding: 0;");
+    var tileText3 = document.createElement('h1')
+    tileText3.id = idtArray[3];
+    tile3.appendChild(tileText3);
+    tileText3.setAttribute("style", "    line-height: 70px;\n" +
+        "    margin: 0;")
+    tileText3.innerHTML = "X";
+
+    var tile4 = document.createElement('div');
+    tile4.id = idArray[4];
+    tile4.className = "box";
+    box.appendChild(tile4);
+    tile4.setAttribute("style", "    min-width: 70px;\n" +
+        "    min-height: 70px;\n" +
+        "    display: inline-block;\n" +
+        "    border: 2px solid lightpink;\n" +
+        "    background: white;\n" +
+        "    border-radius: 3px;\n" +
+        "    margin: 0;\n" +
+        "    padding: 0;");
+    var tileText4 = document.createElement('h1')
+    tileText4.id = idtArray[4];
+    tile4.appendChild(tileText4);
+    tileText4.setAttribute("style", "    line-height: 70px;\n" +
+        "    margin: 0;")
+    tileText4.innerHTML = "X";
+
+
+    var tile5 = document.createElement('div');
+    tile5.id = idArray[5];
+    tile5.className = "box";
+    box.appendChild(tile5);
+    tile5.setAttribute("style", "    min-width: 70px;\n" +
+        "    min-height: 70px;\n" +
+        "    display: inline-block;\n" +
+        "    border: 2px solid lightpink;\n" +
+        "    background: white;\n" +
+        "    border-radius: 3px;\n" +
+        "    margin: 0;\n" +
+        "    padding: 0;");
+    var tileText5 = document.createElement('h1')
+    tileText5.id = idtArray[5];
+    tile5.appendChild(tileText5);
+    tileText5.setAttribute("style", "    line-height: 70px;\n" +
+        "    margin: 0;")
+    tileText5.innerHTML = "X";
+
+    var tile6 = document.createElement('div');
+    tile6.id = idArray[6];
+    tile6.className = "box";
+    box.appendChild(tile6);
+    tile6.setAttribute("style", "    min-width: 70px;\n" +
+        "    min-height: 70px;\n" +
+        "    display: inline-block;\n" +
+        "    border: 2px solid lightpink;\n" +
+        "    background: white;\n" +
+        "    border-radius: 3px;\n" +
+        "    margin: 0;\n" +
+        "    padding: 0;");
+    var tileText6 = document.createElement('h1')
+    tileText6.id = idtArray[6];
+    tile6.appendChild(tileText6);
+    tileText6.setAttribute("style", "    line-height: 70px;\n" +
+        "    margin: 0;")
+    tileText6.innerHTML = "X";
+
+    var tile7 = document.createElement('div');
+    tile7.id = idArray[7];
+    tile7.className = "box";
+    box.appendChild(tile7);
+    tile7.setAttribute("style", "    min-width: 70px;\n" +
+        "    min-height: 70px;\n" +
+        "    display: inline-block;\n" +
+        "    border: 2px solid lightpink;\n" +
+        "    background: white;\n" +
+        "    border-radius: 3px;\n" +
+        "    margin: 0;\n" +
+        "    padding: 0;");
+    var tileText7 = document.createElement('h1')
+    tileText7.id = idtArray[7];
+    tile7.appendChild(tileText7);
+    tileText7.setAttribute("style", "    line-height: 70px;\n" +
+        "    margin: 0;")
+    tileText7.innerHTML = "X";
+
+
+    var tile8 = document.createElement('div');
+    tile8.id = idArray[8];
+    tile8.className = "box";
+    box.appendChild(tile8);
+    tile8.setAttribute("style", "    min-width: 70px;\n" +
+        "    min-height: 70px;\n" +
+        "    display: inline-block;\n" +
+        "    border: 2px solid lightpink;\n" +
+        "    background: white;\n" +
+        "    border-radius: 3px;\n" +
+        "    margin: 0;\n" +
+        "    padding: 0;");
+    var tileText8 = document.createElement('h1')
+    tileText8.id = idtArray[8];
+    tile8.appendChild(tileText8);
+    tileText8.setAttribute("style", "    line-height: 70px;\n" +
+        "    margin: 0;")
+    tileText8.innerHTML = "X";
+
+
+    var tile9 = document.createElement('div');
+    tile9.id = idArray[9];
+    tile9.className = "box";
+    box.appendChild(tile8);
+    tile9.setAttribute("style", "    min-width: 70px;\n" +
+        "    min-height: 70px;\n" +
+        "    display: inline-block;\n" +
+        "    border: 2px solid lightpink;\n" +
+        "    background: white;\n" +
+        "    border-radius: 3px;\n" +
+        "    margin: 0;\n" +
+        "    padding: 0;");
+    var tileText9 = document.createElement('h1')
+    tileText9.id = idtArray[8];
+    tile9.appendChild(tileText8);
+    tileText9.setAttribute("style", "    line-height: 70px;\n" +
+        "    margin: 0;")
+    tileText9.innerHTML = "X";
+
+
+
+
+
+
+    //}
+
+    //document.getElementById('tile1').innerHTML = "X";
+
+
+
+
+   /**
+
+    //const message = document.querySelector('.messages');
+    //const inst = document.querySelector('.instructions');
+    const boxes = document.querySelectorAll('.box');
+
+
+    boxes.forEach( (el) => { el.addEventListener('click',
+        () => {
+            if ( !el.innerHTML ) {
+                el.innerHTML = "X";
+                //toggle();
+                //checkForWinner();
+            }
+        });
+    });
+
+    **/
+
+
+
+
+
+
+
+
+
+
+// Creating noughts, crosses, and toggling between players
+
+/*
+    const toggle = () => {
+        if ( icon === 'X' ) {
+            icon = 'O';
+            inst.innerHTML = "<p>Nought's turn<p/>";
+        }
+        else {
+            icon = 'X';
+            inst.innerHTML = "<p>Cross's turn<p/>";
+        }
+    }
+
+*/
+
+// Function to take a go
+    // if box empty, write in nought or cross
+    // once an icon written in, toggle icon to other player's
+    // check for a winner
+
+    /**
+
+    boxes.forEach( (el) => { el.addEventListener('click',
+        () => {
+            if ( !el.innerHTML ) {
+                el.innerHTML = `<h1>${icon}</h1>`;
+                //toggle();
+                //checkForWinner();
+            }
+        });
+    });
+
+     **/
+
+
+// Function to reset board
+    // clear boxes
+    // clear highlighting
+    // reset message and instruction text to originals
+
+
+// Check board for a winning combo
+
+    const checkForWinner = () => {
+        let xArray = [];
+        let oArray = [];
+        // create arrays of box numbers for Xs and Os
+        boxes.forEach(
+            (box) => {
+                if ( box.textContent ) {
+                    if ( box.textContent == 'X' ) {
+                        xArray.push(parseInt(box.id));
+                    }
+                    if ( box.textContent == 'O' ) {
+                        oArray.push(parseInt(box.id));
+                    }
+                }
+            }
+        );
+        // if one player has 3 or more icons, and it matches a winning array, declare winner.
+        if ( xArray.length >= 3 && compareToWinningArrays(xArray) ) {
+            return declareWinner("Crosses");
+        } else if
+        ( oArray.length >= 3 && compareToWinningArrays(oArray) ) {
+            return declareWinner("Noughts");
+        } else if
+        ( xArray.length + oArray.length === 9 ) {
+            return declareWinner("Nobody");
+        }
+    }
+
+    let winCode = null;
+
+// test the 8 winning combos against sample
+    const compareToWinningArrays = (playerArray) => {
+        let final = false;
+        winningArrays.forEach(
+            (combo) => {
+                let outcome = true;
+                for(let i = 0; i < 3; i++) {
+                    if ( playerArray.indexOf(combo[i]) == -1 )
+                        return outcome = false;
+                }
+                if ( outcome ) {
+                    winCode = combo;
+                    return final = true;
+                }
+            }
+        )
+        if ( final ) return true;
+    }
+
+    const winningArrays =[
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]]
+
+// Function to display winner:
+    // set message to wining player
+    // set instructions to 'yay'
+    // highlight winning boxes
+
+    const declareWinner = (win) => {
+        message.innerHTML = `<h2>${win} wins!<h2>`;
+        inst.innerHTML = 'yay!';
+        highlight();
+    };
+
+// highlight winning combo boxes:
+    const highlight = () => {
+        if (winCode) {
+            for(let i = 0; i < 3; i++) {
+                let id = `${winCode[i]}`;
+                const el = document.getElementById(id);
+                el.style.background = "lightcyan";
+            }
+        }
+    }
+// remove highlight
+    const resetHighlight = () => {
+        boxes.forEach(
+            (box) => {
+                box.style.background = "white";
+            }
+        );
+
+    }
+
+
+
+
+
+    document.getElementById('renderhere').append(box,messages,instructions);
+
+
+
+
+
+
+
+
 
 
 });
