@@ -191,7 +191,7 @@ addEventToButton(3, function (event) {
 
     }
 
-   // entry form for to do list
+    // entry form for to do list
     var entry = document.createElement("FORM");
     entry.setAttribute("id", "myForm");
     page3.append(entry);
@@ -357,10 +357,6 @@ addEventToButton(4, function (event) {
     var numPlays = 0;
 
 
-
-
-
-
     let icon = 'X'
 
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
@@ -388,7 +384,7 @@ addEventToButton(4, function (event) {
 
     var idArray = ['itile0', 'itile1', 'itile2', 'itile3', 'itile4', 'itile5', 'itile6', 'itile7', 'itile8'];
     var idtArray = ['ttile0', 'ttile1', 'ttile2', 'ttile3', 'ttile4', 'ttile5', 'ttile6', 'ttile7', 'ttile8'];
-    var tilePlayed = [false,false,false,false,false,false,false,false];
+    var tilePlayed = [false, false, false, false, false, false, false, false];
     var XPlayed = [];
     var OPlayed = [];
 
@@ -413,19 +409,19 @@ addEventToButton(4, function (event) {
     tile0.className = "box";
     box.appendChild(tile0);
     tile0.setAttribute("style", "    min-width: 70px;\n" +
-            "    min-height: 70px;\n" +
-            "    display: inline-block;\n" +
-            "    border: 2px solid lightpink;\n" +
-            "    background: white;\n" +
-            "    border-radius: 3px;\n" +
-            "    margin: 0;\n" +
-            "    padding: 0;");
+        "    min-height: 70px;\n" +
+        "    display: inline-block;\n" +
+        "    border: 2px solid lightpink;\n" +
+        "    background: white;\n" +
+        "    border-radius: 3px;\n" +
+        "    margin: 0;\n" +
+        "    padding: 0;");
     var tileText0 = document.createElement('h1')
     tileText0.id = idtArray[0];
     tile0.appendChild(tileText0);
     tileText0.className = "tile";
     tileText0.setAttribute("style", "    line-height: 70px;\n" +
-            "    margin: 0;")
+        "    margin: 0;")
 
 
     var tile1 = document.createElement('div');
@@ -508,7 +504,6 @@ addEventToButton(4, function (event) {
         "    margin: 0;")
 
 
-
     var tile5 = document.createElement('div');
     tile5.id = idArray[5];
     tile5.className = "box";
@@ -548,7 +543,6 @@ addEventToButton(4, function (event) {
     tile6.appendChild(tileText6);
 
 
-
     tileText6.setAttribute("style", "    line-height: 70px;\n" +
         "    margin: 0;")
 
@@ -573,7 +567,6 @@ addEventToButton(4, function (event) {
         "    margin: 0;")
 
 
-
     var tile8 = document.createElement('div');
     tile8.id = idArray[8];
     tile8.className = "box";
@@ -594,9 +587,7 @@ addEventToButton(4, function (event) {
         "    margin: 0;")
 
 
-
     var boxes = document.querySelectorAll('tile');
-
 
 
     tile0.addEventListener('click', function (event) {
@@ -626,9 +617,6 @@ addEventToButton(4, function (event) {
     });
 
 
-
-
-
     tile1.addEventListener('click', function (event) {
 
 
@@ -653,10 +641,7 @@ addEventToButton(4, function (event) {
         checkForWinner();
 
 
-        });
-
-
-
+    });
 
 
     tile2.addEventListener('click', function (event) {
@@ -684,9 +669,6 @@ addEventToButton(4, function (event) {
     });
 
 
-
-
-
     tile3.addEventListener('click', function (event) {
 
 
@@ -710,11 +692,6 @@ addEventToButton(4, function (event) {
         checkForWinner();
 
     });
-
-
-
-
-
 
 
     tile4.addEventListener('click', function (event) {
@@ -742,11 +719,6 @@ addEventToButton(4, function (event) {
     });
 
 
-
-
-
-
-
     tile5.addEventListener('click', function (event) {
 
 
@@ -766,8 +738,6 @@ addEventToButton(4, function (event) {
             }
         }
         checkForWinner();
-
-
 
 
     });
@@ -838,22 +808,12 @@ addEventToButton(4, function (event) {
                 alert("O turn");
 
 
-
             }
         }
         checkForWinner();
 
 
-
     });
-
-
-
-
-
-
-
-
 
 
     //}
@@ -861,16 +821,14 @@ addEventToButton(4, function (event) {
     //document.getElementById('tile1').innerHTML = "X";
 
 
+    /**
+
+     //const message = document.querySelector('.messages');
+     //const inst = document.querySelector('.instructions');
+     const boxes = document.querySelectorAll('.box');
 
 
-   /**
-
-    //const message = document.querySelector('.messages');
-    //const inst = document.querySelector('.instructions');
-    const boxes = document.querySelectorAll('.box');
-
-
-    boxes.forEach( (el) => { el.addEventListener('click',
+     boxes.forEach( (el) => { el.addEventListener('click',
         () => {
             if ( !el.innerHTML ) {
                 el.innerHTML = "X";
@@ -880,32 +838,24 @@ addEventToButton(4, function (event) {
         });
     });
 
-    **/
-
-
-
-
-
-
-
-
+     **/
 
 
 // Creating noughts, crosses, and toggling between players
 
-/*
-    const toggle = () => {
-        if ( icon === 'X' ) {
-            icon = 'O';
-            inst.innerHTML = "<p>Nought's turn<p/>";
+    /*
+        const toggle = () => {
+            if ( icon === 'X' ) {
+                icon = 'O';
+                inst.innerHTML = "<p>Nought's turn<p/>";
+            }
+            else {
+                icon = 'X';
+                inst.innerHTML = "<p>Cross's turn<p/>";
+            }
         }
-        else {
-            icon = 'X';
-            inst.innerHTML = "<p>Cross's turn<p/>";
-        }
-    }
 
-*/
+    */
 
 // Function to take a go
     // if box empty, write in nought or cross
@@ -914,7 +864,7 @@ addEventToButton(4, function (event) {
 
     /**
 
-    boxes.forEach( (el) => { el.addEventListener('click',
+     boxes.forEach( (el) => { el.addEventListener('click',
         () => {
             if ( !el.innerHTML ) {
                 el.innerHTML = `<h1>${icon}</h1>`;
@@ -928,9 +878,9 @@ addEventToButton(4, function (event) {
 
 
 // Function to reset board
-    // clear boxes
-    // clear highlighting
-    // reset message and instruction text to originals
+        // clear boxes
+        // clear highlighting
+        // reset message and instruction text to originals
 
 
 // Check board for a winning combo
@@ -938,24 +888,20 @@ addEventToButton(4, function (event) {
     const checkForWinner = () => {
 
 
+            numPlays++;
+            // if one player has 3 or more icons, and it matches a winning array, declare winner.
+            if (XPlayed.length >= 3 && compareToWinningArrays(XPlayed)) {
+                alert("X WON");
+            } else if
+            (OPlayed.length >= 3 && compareToWinningArrays(OPlayed)) {
+                alert("O WON");
+            } else if (numPlays === 9) {
+                alert("It's a tie ")
+            }
 
-        numPlays ++;
-        // if one player has 3 or more icons, and it matches a winning array, declare winner.
-        if ( XPlayed.length >= 3 && compareToWinningArrays(XPlayed) ) {
-            alert("X WON");
-        } else if
-        ( OPlayed.length >= 3 && compareToWinningArrays(OPlayed) ) {
-            alert("O WON");
+
+            // add else if for game finished
         }
-
-        else if ( numPlays === 9) {
-        alert("It's a tie ")
-        }
-
-
-
-        // add else if for game finished
-    }
 
     let winCode = null;
 
@@ -965,28 +911,28 @@ addEventToButton(4, function (event) {
         winningArrays.forEach(
             (combo) => {
                 let outcome = true;
-                for(let i = 0; i < 3; i++) {
-                    if ( playerArray.indexOf(combo[i]) == -1 )
+                for (let i = 0; i < 3; i++) {
+                    if (playerArray.indexOf(combo[i]) == -1)
                         return outcome = false;
                 }
-                if ( outcome ) {
+                if (outcome) {
                     winCode = combo;
                     return final = true;
                 }
             }
         )
-        if ( final ) return true;
+        if (final) return true;
     }
 
-    const winningArrays =[
-        [0,1,2],
-        [3,4,5],
-        [6,7,8],
-        [0,3,6],
-        [1,4,7],
-        [2,5,8],
-        [0,4,8],
-        [2,4,6]]
+    const winningArrays = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]]
 
 // Function to display winner:
     // set message to wining player
@@ -1002,7 +948,7 @@ addEventToButton(4, function (event) {
 // highlight winning combo boxes:
     const highlight = () => {
         if (winCode) {
-            for(let i = 0; i < 3; i++) {
+            for (let i = 0; i < 3; i++) {
                 let id = `${winCode[i]}`;
                 const el = document.getElementById(id);
                 el.style.background = "lightcyan";
@@ -1020,11 +966,112 @@ addEventToButton(4, function (event) {
     }
 
 
+    document.getElementById('renderhere').append(box, messages, instructions);
+
+
+});
+
+addEventToButton(5, function (event) {
 
 
 
-    document.getElementById('renderhere').append(box,messages,instructions);
 
+
+    document.getElementById('renderhere').childNodes.forEach(value => value.remove());
+    document.getElementById('renderhere').innerHTML = "";
+
+    var clickX = [];
+    var clickY = [];
+    var clickDrag = [];
+    var paint;
+    var mouseX;
+    var mouseY;
+
+
+
+
+    var frame = document.createElement('div');
+
+    frame.id = 'box';
+    frame.className = "container";
+    frame.setAttribute("style", "    width: 500px;\n" + " height: 220px;\n" +
+        "    background: lightpink;\n" +
+        "    padding: 10px;\n" +
+        "    border-radius: 8px;\n" +
+        "    margin: 30px auto;\n" +
+        "    display: flex;\n" +
+        "    flex-flow: row wrap;\n" +
+        "    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);");
+
+
+
+
+
+
+    var canvas = document.createElement('canvas');
+    frame.appendChild(canvas);
+    canvas.setAttribute('width', 490);
+    canvas.setAttribute('height', 210);
+    canvas.setAttribute('id', 'canvas');
+
+    if(typeof G_vmlCanvasManager != 'undefined') {
+        canvas = G_vmlCanvasManager.initElement(canvas);
+    }
+    var context = canvas.getContext("2d");
+
+
+    canvas.addEventListener('mousedown', function(e){
+        mouseX = e.pageX - this.offsetLeft;
+        mouseY = e.pageY - this.offsetTop;
+
+        paint = true;
+        addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
+        redraw();
+    });
+
+
+    canvas.addEventListener('mousemove', function(e){
+        if(paint){
+            addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+            redraw();
+        }
+    });
+
+    canvas.addEventListener('mouseup', function(e){
+        paint = false;
+    });
+
+
+
+    function addClick(x, y, dragging)
+    {
+        clickX.push(x);
+        clickY.push(y);
+        clickDrag.push(dragging);
+    }
+
+    function redraw(){
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+
+        context.strokeStyle = "black";
+        context.lineJoin = "round";
+        context.lineWidth = 5;
+
+        for(var i=0; i < clickX.length; i++) {
+            context.beginPath();
+            if(clickDrag[i] && i){
+                context.moveTo(clickX[i-1], clickY[i-1]);
+            }else{
+                context.moveTo(clickX[i]-1, clickY[i]);
+            }
+            context.lineTo(clickX[i], clickY[i]);
+            context.closePath();
+            context.stroke();
+        }
+    }
+
+
+    document.getElementById('renderhere').append(frame);
 
 
 
