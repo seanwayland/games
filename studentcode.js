@@ -353,6 +353,14 @@ addEventToButton(3, function (event) {
 addEventToButton(4, function (event) {
 
 
+    var toggle = true;
+    var numPlays = 0;
+
+
+
+
+
+
     let icon = 'X'
 
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
@@ -378,8 +386,11 @@ addEventToButton(4, function (event) {
     instructions.classname = "instructions";
     instructions.innerHTML = "<p>Click in a box to play</p>";
 
-    var idArray = ["tile0", "tile1", "tile2", "tile3", "tile4", "tile5", "tile6", "tile7", "tile8"];
-    var idtArray = ["ttile0", "ttile1", "ttile2", "ttile3", "ttile4", "ttile5", "ttile6", "ttile7", "ttile8"];
+    var idArray = ['itile0', 'itile1', 'itile2', 'itile3', 'itile4', 'itile5', 'itile6', 'itile7', 'itile8'];
+    var idtArray = ['ttile0', 'ttile1', 'ttile2', 'ttile3', 'ttile4', 'ttile5', 'ttile6', 'ttile7', 'ttile8'];
+    var tilePlayed = [false,false,false,false,false,false,false,false];
+    var XPlayed = [];
+    var OPlayed = [];
 
 
     var box = document.createElement('div');
@@ -412,9 +423,10 @@ addEventToButton(4, function (event) {
     var tileText0 = document.createElement('h1')
     tileText0.id = idtArray[0];
     tile0.appendChild(tileText0);
+    tileText0.className = "tile";
     tileText0.setAttribute("style", "    line-height: 70px;\n" +
             "    margin: 0;")
-    tileText0.innerHTML = "X";
+
 
     var tile1 = document.createElement('div');
     tile1.id = idArray[1];
@@ -431,14 +443,15 @@ addEventToButton(4, function (event) {
     var tileText1 = document.createElement('h1')
     tileText1.id = idtArray[1];
     tile1.appendChild(tileText1);
+    tileText1.className = "tile";
     tileText1.setAttribute("style", "    line-height: 70px;\n" +
         "    margin: 0;")
-    tileText1.innerHTML = "X";
+
 
     var tile2 = document.createElement('div');
     tile2.id = idArray[2];
     tile2.className = "box";
-    box.appendChild(tile1);
+    box.appendChild(tile2);
     tile2.setAttribute("style", "    min-width: 70px;\n" +
         "    min-height: 70px;\n" +
         "    display: inline-block;\n" +
@@ -450,9 +463,10 @@ addEventToButton(4, function (event) {
     var tileText2 = document.createElement('h1')
     tileText2.id = idtArray[2];
     tile2.appendChild(tileText2);
+    tileText2.className = "tile";
     tileText2.setAttribute("style", "    line-height: 70px;\n" +
         "    margin: 0;")
-    tileText2.innerHTML = "X";
+
 
     var tile3 = document.createElement('div');
     tile3.id = idArray[3];
@@ -469,9 +483,10 @@ addEventToButton(4, function (event) {
     var tileText3 = document.createElement('h1')
     tileText3.id = idtArray[3];
     tile3.appendChild(tileText3);
+    tileText3.className = "tile";
     tileText3.setAttribute("style", "    line-height: 70px;\n" +
         "    margin: 0;")
-    tileText3.innerHTML = "X";
+
 
     var tile4 = document.createElement('div');
     tile4.id = idArray[4];
@@ -488,15 +503,17 @@ addEventToButton(4, function (event) {
     var tileText4 = document.createElement('h1')
     tileText4.id = idtArray[4];
     tile4.appendChild(tileText4);
+    tileText4.className = "tile";
     tileText4.setAttribute("style", "    line-height: 70px;\n" +
         "    margin: 0;")
-    tileText4.innerHTML = "X";
+
 
 
     var tile5 = document.createElement('div');
     tile5.id = idArray[5];
     tile5.className = "box";
     box.appendChild(tile5);
+
     tile5.setAttribute("style", "    min-width: 70px;\n" +
         "    min-height: 70px;\n" +
         "    display: inline-block;\n" +
@@ -508,14 +525,16 @@ addEventToButton(4, function (event) {
     var tileText5 = document.createElement('h1')
     tileText5.id = idtArray[5];
     tile5.appendChild(tileText5);
+    tileText5.className = "tile";
     tileText5.setAttribute("style", "    line-height: 70px;\n" +
-        "    margin: 0;")
-    tileText5.innerHTML = "X";
+        "    margin: 0;");
+
 
     var tile6 = document.createElement('div');
     tile6.id = idArray[6];
     tile6.className = "box";
     box.appendChild(tile6);
+
     tile6.setAttribute("style", "    min-width: 70px;\n" +
         "    min-height: 70px;\n" +
         "    display: inline-block;\n" +
@@ -527,9 +546,12 @@ addEventToButton(4, function (event) {
     var tileText6 = document.createElement('h1')
     tileText6.id = idtArray[6];
     tile6.appendChild(tileText6);
+
+
+
     tileText6.setAttribute("style", "    line-height: 70px;\n" +
         "    margin: 0;")
-    tileText6.innerHTML = "X";
+
 
     var tile7 = document.createElement('div');
     tile7.id = idArray[7];
@@ -546,9 +568,10 @@ addEventToButton(4, function (event) {
     var tileText7 = document.createElement('h1')
     tileText7.id = idtArray[7];
     tile7.appendChild(tileText7);
+    tileText7.className = "tile";
     tileText7.setAttribute("style", "    line-height: 70px;\n" +
         "    margin: 0;")
-    tileText7.innerHTML = "X";
+
 
 
     var tile8 = document.createElement('div');
@@ -566,29 +589,267 @@ addEventToButton(4, function (event) {
     var tileText8 = document.createElement('h1')
     tileText8.id = idtArray[8];
     tile8.appendChild(tileText8);
+    tileText8.className = "tile";
     tileText8.setAttribute("style", "    line-height: 70px;\n" +
         "    margin: 0;")
-    tileText8.innerHTML = "X";
 
 
-    var tile9 = document.createElement('div');
-    tile9.id = idArray[9];
-    tile9.className = "box";
-    box.appendChild(tile8);
-    tile9.setAttribute("style", "    min-width: 70px;\n" +
-        "    min-height: 70px;\n" +
-        "    display: inline-block;\n" +
-        "    border: 2px solid lightpink;\n" +
-        "    background: white;\n" +
-        "    border-radius: 3px;\n" +
-        "    margin: 0;\n" +
-        "    padding: 0;");
-    var tileText9 = document.createElement('h1')
-    tileText9.id = idtArray[8];
-    tile9.appendChild(tileText8);
-    tileText9.setAttribute("style", "    line-height: 70px;\n" +
-        "    margin: 0;")
-    tileText9.innerHTML = "X";
+
+    var boxes = document.querySelectorAll('tile');
+
+
+
+    tile0.addEventListener('click', function (event) {
+
+
+        if (!(tilePlayed[0])) {
+            tilePlayed[0] = true;
+
+            toggle = !toggle;
+            if (toggle) {
+                tileText0.innerHTML = "0";
+                OPlayed.push(0);
+                alert("X turn");
+
+            } else {
+                tileText0.innerHTML = "X";
+                XPlayed.push(0);
+                alert("O turn");
+
+            }
+
+        }
+
+        checkForWinner();
+
+
+    });
+
+
+
+
+
+    tile1.addEventListener('click', function (event) {
+
+
+        if (!(tilePlayed[1])) {
+            tilePlayed[1] = true;
+
+            toggle = !toggle;
+            if (toggle) {
+                tileText1.innerHTML = "0";
+                OPlayed.push(1);
+                alert("X turn");
+
+            } else {
+                tileText1.innerHTML = "X";
+                XPlayed.push(1);
+                alert("O turn");
+
+            }
+
+        }
+
+        checkForWinner();
+
+
+        });
+
+
+
+
+
+    tile2.addEventListener('click', function (event) {
+
+
+        if (!(tilePlayed[2])) {
+            tilePlayed[2] = true;
+            toggle = !toggle;
+            if (toggle) {
+                tileText2.innerHTML = "0";
+                OPlayed.push(2);
+                alert("X turn");
+
+            } else {
+                tileText2.innerHTML = "X";
+                XPlayed.push(2);
+                alert("O turn");
+
+            }
+        }
+
+        checkForWinner();
+
+
+    });
+
+
+
+
+
+    tile3.addEventListener('click', function (event) {
+
+
+        if (!(tilePlayed[3])) {
+            tilePlayed[3] = true;
+
+
+            toggle = !toggle;
+            if (toggle) {
+                tileText3.innerHTML = "0";
+                OPlayed.push(3);
+                alert("X turn");
+
+            } else {
+                tileText3.innerHTML = "X";
+                XPlayed.push(3);
+                alert("O turn");
+
+            }
+        }
+        checkForWinner();
+
+    });
+
+
+
+
+
+
+
+    tile4.addEventListener('click', function (event) {
+
+
+        if ((!tilePlayed[4])) {
+            tilePlayed[4] = true;
+
+
+            toggle = !toggle;
+            if (toggle) {
+                tileText4.innerHTML = "0";
+                OPlayed.push(4);
+                alert("X turn");
+
+            } else {
+                tileText4.innerHTML = "X";
+                XPlayed.push(4);
+                alert("O turn");
+
+            }
+        }
+        checkForWinner();
+
+    });
+
+
+
+
+
+
+
+    tile5.addEventListener('click', function (event) {
+
+
+        if (!(tilePlayed[5])) {
+            tilePlayed[5] = true;
+            toggle = !toggle;
+            if (toggle) {
+                tileText5.innerHTML = "0";
+                OPlayed.push(5);
+                alert("X turn");
+
+            } else {
+                tileText5.innerHTML = "X";
+                XPlayed.push(5);
+                alert("O turn");
+
+            }
+        }
+        checkForWinner();
+
+
+
+
+    });
+
+
+    tile6.addEventListener('click', function (event) {
+
+        if (!(tilePlayed[6])) {
+            tilePlayed[6] = true;
+            toggle = !toggle;
+            if (toggle) {
+                tileText6.innerHTML = "0";
+                OPlayed.push(6);
+                alert("X turn");
+
+            } else {
+                tileText6.innerHTML = "X";
+                XPlayed.push(6);
+                alert("O turn");
+
+            }
+
+        }
+        checkForWinner();
+
+    });
+
+    tile7.addEventListener('click', function (event) {
+
+
+        if (!(tilePlayed[7])) {
+            tilePlayed[0] = true;
+
+
+            toggle = !toggle;
+            if (toggle) {
+                tileText7.innerHTML = "0";
+                OPlayed.push(7);
+                alert("X turn");
+
+            } else {
+                tileText7.innerHTML = "X";
+                XPlayed.push(7);
+
+                alert("O turn");
+
+            }
+        }
+        checkForWinner();
+
+
+    });
+
+    tile8.addEventListener('click', function (event) {
+
+
+        if (!(tilePlayed[8])) {
+            tilePlayed[8] = true;
+            toggle = !toggle;
+            if (toggle) {
+                tileText8.innerHTML = "0";
+                OPlayed.push(8);
+                alert("X turn");
+
+            } else {
+                tileText8.innerHTML = "X";
+                XPlayed.push(8);
+                alert("O turn");
+
+
+
+            }
+        }
+        checkForWinner();
+
+
+
+    });
+
+
+
+
 
 
 
@@ -675,31 +936,25 @@ addEventToButton(4, function (event) {
 // Check board for a winning combo
 
     const checkForWinner = () => {
-        let xArray = [];
-        let oArray = [];
-        // create arrays of box numbers for Xs and Os
-        boxes.forEach(
-            (box) => {
-                if ( box.textContent ) {
-                    if ( box.textContent == 'X' ) {
-                        xArray.push(parseInt(box.id));
-                    }
-                    if ( box.textContent == 'O' ) {
-                        oArray.push(parseInt(box.id));
-                    }
-                }
-            }
-        );
+
+
+
+        numPlays ++;
         // if one player has 3 or more icons, and it matches a winning array, declare winner.
-        if ( xArray.length >= 3 && compareToWinningArrays(xArray) ) {
-            return declareWinner("Crosses");
+        if ( XPlayed.length >= 3 && compareToWinningArrays(XPlayed) ) {
+            alert("X WON");
         } else if
-        ( oArray.length >= 3 && compareToWinningArrays(oArray) ) {
-            return declareWinner("Noughts");
-        } else if
-        ( xArray.length + oArray.length === 9 ) {
-            return declareWinner("Nobody");
+        ( OPlayed.length >= 3 && compareToWinningArrays(OPlayed) ) {
+            alert("O WON");
         }
+
+        else if ( numPlays === 9) {
+        alert("It's a tie ")
+        }
+
+
+
+        // add else if for game finished
     }
 
     let winCode = null;
