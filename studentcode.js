@@ -320,35 +320,7 @@ addEventToButton(3, function (event) {
 
  */
 
-/**
- *
- *
- * .container {
-    width: 223px;
-    background: lightpink;
-    padding: 10px;
-    border-radius: 8px;
-    margin: 30px auto;
-    display: flex;
-    flex-flow: row wrap;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-}
 
-
-
- .box {
-    min-width: 70px;
-    min-height: 70px;
-    display: inline-block;
-    border: 2px solid lightpink;
-    background: white;
-    border-radius: 3px;
-    margin: 0;
-    padding: 0;
-}
-
-
- */
 
 addEventToButton(4, function (event) {
 
@@ -362,15 +334,7 @@ addEventToButton(4, function (event) {
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
     document.getElementById('renderhere').innerHTML = "";
 
-    /*
-    <div class="messages">
-        <h2>Crosses start</h2>
-    </div>
-    <div class="instructions">
-        <p>Click in a box to play</p>
-    </div>
 
-     */
     var messages = document.createElement('div');
     messages.id = "mess";
     messages.classname = "messages";
@@ -816,74 +780,8 @@ addEventToButton(4, function (event) {
     });
 
 
-    //}
 
-    //document.getElementById('tile1').innerHTML = "X";
-
-
-    /**
-
-     //const message = document.querySelector('.messages');
-     //const inst = document.querySelector('.instructions');
-     const boxes = document.querySelectorAll('.box');
-
-
-     boxes.forEach( (el) => { el.addEventListener('click',
-        () => {
-            if ( !el.innerHTML ) {
-                el.innerHTML = "X";
-                //toggle();
-                //checkForWinner();
-            }
-        });
-    });
-
-     **/
-
-
-// Creating noughts, crosses, and toggling between players
-
-    /*
-        const toggle = () => {
-            if ( icon === 'X' ) {
-                icon = 'O';
-                inst.innerHTML = "<p>Nought's turn<p/>";
-            }
-            else {
-                icon = 'X';
-                inst.innerHTML = "<p>Cross's turn<p/>";
-            }
-        }
-
-    */
-
-// Function to take a go
-    // if box empty, write in nought or cross
-    // once an icon written in, toggle icon to other player's
-    // check for a winner
-
-    /**
-
-     boxes.forEach( (el) => { el.addEventListener('click',
-        () => {
-            if ( !el.innerHTML ) {
-                el.innerHTML = `<h1>${icon}</h1>`;
-                //toggle();
-                //checkForWinner();
-            }
-        });
-    });
-
-     **/
-
-
-// Function to reset board
-        // clear boxes
-        // clear highlighting
-        // reset message and instruction text to originals
-
-
-// Check board for a winning combo
+// Check board for a win
 
     const checkForWinner = () => {
 
@@ -934,36 +832,7 @@ addEventToButton(4, function (event) {
         [0, 4, 8],
         [2, 4, 6]]
 
-// Function to display winner:
-    // set message to wining player
-    // set instructions to 'yay'
-    // highlight winning boxes
 
-    const declareWinner = (win) => {
-        message.innerHTML = `<h2>${win} wins!<h2>`;
-        inst.innerHTML = 'yay!';
-        highlight();
-    };
-
-// highlight winning combo boxes:
-    const highlight = () => {
-        if (winCode) {
-            for (let i = 0; i < 3; i++) {
-                let id = `${winCode[i]}`;
-                const el = document.getElementById(id);
-                el.style.background = "lightcyan";
-            }
-        }
-    }
-// remove highlight
-    const resetHighlight = () => {
-        boxes.forEach(
-            (box) => {
-                box.style.background = "white";
-            }
-        );
-
-    }
 
 
     document.getElementById('renderhere').append(box, messages, instructions);
@@ -1086,26 +955,15 @@ addEventToButton(6, function (event) {
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
     document.getElementById('renderhere').innerHTML = "";
 
-
-
     var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     //svg.setAttribute('style', 'border: 1px solid black');
     svg.setAttribute('width', '600');
     svg.setAttribute('height', '480');
     svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
 
-    /*
 
-<svg width="200" height="150" xmlns="http://www.w3.org/2000/svg" version="1.1">
-        <path d="M 10 75 Q 50 10 100 75 T 190 75" stroke="black"
-    stroke-linecap="round" stroke-dasharray="5,10,5" fill="none"/>
-        <path d="M 10 75 L 190 75" stroke="red"
-    stroke-linecap="round" stroke-width="1" stroke-dasharray="5,5" fill="none"/>
-        </svg>
 
-    */
 
-    //var p = document.createElement('path');
     var p = document.createElementNS("http://www.w3.org/2000/svg", 'path');
     p.setAttribute('d', 'M 548.75971,230.81265 L 548.76015,230.8083 M 59.458875,230.81371 L 64.358875,219.11371 L 69.358875,207.41371 L 74.258875,195.91371 L 79.258875,184.51371 L 84.158875,173.21371 L 89.158875,162.21371 L 94.058875,151.51371 L 98.958875,141.11371 L 103.95887,131.11371 L 108.85887,121.41371 L 113.85887,112.21371 L 118.75887,103.51371 L 123.75887,95.313708 L 128.65887,87.613708 L 133.55887,80.513708 L 138.55887,74.113708 L 143.45887,68.213708 L 148.45887,63.013708 L 153.35887,58.513708 L 158.25887,54.713708 L 163.25887,51.513708 L 168.15887,49.113708 L 173.15887,47.513708 L 178.05887,46.613708 L 183.05887,46.413708 L 187.95887,46.913708 L 192.85887,48.213708 L 197.85887,50.313708 L 202.75887,53.013708 L 207.75887,56.513708 L 212.65887,60.713708 L 217.65887,65.513708 L 222.55887,71.113708 L 227.45887,77.213708 L 232.45887,84.013708 L 237.35887,91.413708 L 242.35887,99.313708 L 247.25887,107.81371 L 252.25887,116.81371 L 257.15887,126.21371 L 262.05887,136.01371 L 267.05887,146.31371 L 271.95887,156.81371 L 276.95887,167.71371 L 281.85887,178.81371 L 286.85887,190.21371 L 291.75887,201.71371 L 296.65887,213.31371 L 301.65887,224.91371 L 306.55887,236.71371 L 311.55887,248.31371 L 316.45887,259.91371 L 321.35887,271.41371 L 326.35887,282.81371 L 331.25887,293.91371 L 336.25887,304.81371 L 341.15887,315.31371 L 346.15887,325.61371 L 351.05887,335.41371 L 355.95887,344.81371 L 360.95887,353.81371 L 365.85887,362.31371 L 370.85887,370.21371 L 375.75887,377.61371 L 380.75887,384.41371 L 385.65887,390.51371 L 390.55887,396.11371 L 395.55887,400.91371 L 400.45887,405.11371 L 405.45887,408.61371 L 410.35887,411.31371 L 415.35887,413.41371 L 420.25887,414.71371 L 425.15887,415.21371 L 430.15887,415.01371 L 435.05887,414.11371 L 440.05887,412.51371 L 444.95887,410.11371 L 449.95887,406.91371 L 454.85887,403.11371 L 459.75887,398.61371 L 464.75887,393.41371 L 469.65887,387.51371 L 474.65887,381.11371 L 479.55887,374.01371 L 484.45887,366.31371 L 489.45887,358.11371 L 494.35887,349.41371 L 499.35887,340.21371 L 504.25887,330.51371 L 509.25887,320.51371 L 514.15887,310.11371 L 519.05887,299.41371 L 524.05887,288.41371 L 528.95887,277.11371 L 533.95887,265.71371 L 538.85887,254.21371 L 543.85887,242.51371 L 548.75887,230.81371');
 
@@ -1121,57 +979,96 @@ addEventToButton(6, function (event) {
 
 
 
-    /*
-
-    var stroke = document.createElement('path');
-
-
-    stroke.setAttribute ("style", "    stroke: black;\n" +
-        "    fill: none;\n" +
-        "    d :M0,0 C109.26,0,211.74,300,300,300;\n" +
-        "    border: 2px solid lightpink;\n" +
-        "    background: white;\n" +
-        "    border-radius: 3px;\n" +
-        "    margin: 0;\n" +
-        "    padding: 0;" )
-
-
-
-
-    svg.appendChild(stroke);
-
-
-     */
-
-
     document.getElementById('renderhere').append(svg);
 
 
 
-    /*
-    var sinWav = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-
-
-    //var sinWav = document.createElement('SVG');
-    sinWav.setAttribute('width', "300");
-    sinWav.setAttribute('height', "300");
-
-    sinWav.setAttribute('id', 'SinWav');
-
-
-     */
-
-
-
-
-
-
-
-
-
-
-    // set width and height
 
 });
 
+
+addEventToButton(7, function (event) {
+
+
+
+/*
+<input id="lineWidth" type="range" min="0" max="200" step="1" value="10" />
+
+        <canvas id="mycanvas" width="800" height="600"></canvas>
+
+ */
+
+    document.getElementById('renderhere').childNodes.forEach(value => value.remove());
+    document.getElementById('renderhere').innerHTML = "";
+
+    var animatedSine = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    //svg.setAttribute('style', 'border: 1px solid black');
+    animatedSine.setAttribute('width', '600');
+    animatedSine.setAttribute('height', '400');
+    animatedSine.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+
+
+
+
+    var p2 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+    p2.setAttribute('d', 'M10,10 L50,100 L90,50');
+
+    p2.setAttribute('stroke' , 'black');
+    p2.setAttribute('stroke-width', '10px');
+    p2.setAttribute('stroke-linecap', '5,10,5');
+    p2.setAttribute('fill', 'none' );
+
+    animatedSine.appendChild(p2);
+
+
+    let xs = []
+    for (var i = 0; i <= 500; i++) {
+        xs.push(i)
+    }
+
+
+    let t = (new Date()).getTime()/1000;
+
+
+
+
+
+    function animate() {
+
+        let points = xs.map(x => {
+
+
+            let y = 200 + 50 * Math.sin((x + t) *0.1)
+
+            return [x, y]
+        })
+
+        let path = "M" + points.map(p => {
+            return p[0] + "," + p[1]
+        }).join(" L")
+
+        p2.setAttribute("d", path)
+
+        t = ((new Date()).getTime())/10;
+
+
+
+        requestAnimationFrame(animate)
+    }
+
+    animate()
+
+
+
+    document.getElementById('renderhere').append(animatedSine);
+
+
+
+
+//init();
+
+
+
+
+});
 
