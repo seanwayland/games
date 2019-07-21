@@ -955,6 +955,9 @@ addEventToButton(6, function (event) {
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
     document.getElementById('renderhere').innerHTML = "";
 
+
+
+
     var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     //svg.setAttribute('style', 'border: 1px solid black');
     svg.setAttribute('width', '600');
@@ -997,6 +1000,34 @@ addEventToButton(7, function (event) {
         <canvas id="mycanvas" width="800" height="600"></canvas>
 
  */
+    var myDiv = document.createElement('div');
+    var Kentry = document.createElement("FORM");
+    Kentry.setAttribute("id", "myForm");
+
+    myDiv.appendChild(Kentry);
+
+
+    var kValueInput = document.createElement("INPUT");
+    kValueInput.setAttribute("type", "number");
+    kValueInput.setAttribute("value", "10");
+    Kentry.appendChild(kValueInput);
+
+
+
+
+
+
+
+
+    var myVar=setInterval(function(){animate()},30);
+
+
+
+
+
+
+
+
 
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
     document.getElementById('renderhere').innerHTML = "";
@@ -1035,10 +1066,15 @@ addEventToButton(7, function (event) {
 
     function animate() {
 
+
+        //var K = document.getElementById("kVal").value;
+        var K = kValueInput.value;
+        K = K/100;
+
         let points = xs.map(x => {
 
 
-            let y = 200 + 50 * Math.sin((x + t) *0.1)
+            let y = 200 + 50 * Math.sin((x + t) *K)
 
             return [x, y]
         })
@@ -1060,7 +1096,7 @@ addEventToButton(7, function (event) {
 
 
 
-    document.getElementById('renderhere').append(animatedSine);
+    document.getElementById('renderhere').append(myDiv,animatedSine);
 
 
 
