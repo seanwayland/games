@@ -1015,16 +1015,7 @@ addEventToButton(7, function (event) {
 
 
 
-
-
-
-
     var myVar=setInterval(function(){animate()},30);
-
-
-
-
-
 
 
 
@@ -1063,7 +1054,6 @@ addEventToButton(7, function (event) {
 
 
 
-
     function animate() {
 
 
@@ -1088,12 +1078,10 @@ addEventToButton(7, function (event) {
         t = ((new Date()).getTime())/10;
 
 
-
         requestAnimationFrame(animate)
     }
 
     animate()
-
 
 
     document.getElementById('renderhere').append(myDiv,animatedSine);
@@ -1108,3 +1096,286 @@ addEventToButton(7, function (event) {
 
 });
 
+
+addEventToButton(8, function (event) {
+
+    document.getElementById('renderhere').childNodes.forEach(value => value.remove());
+    document.getElementById('renderhere').innerHTML = "";
+
+
+    var page8 = document.createElement('div');
+
+
+    var turnsLeft = 8;
+
+
+    var challenge = [];
+
+    for ( let i = 0; i < 4; i++){
+
+    var nextColor = Math.floor(Math.random() * 6);
+
+     challenge.push(nextColor);
+    }
+
+
+    alert(challenge.join("\n"));
+
+
+
+
+
+
+    var nextGuess = [0,0,0,0];
+
+    var nextScore = [0,0,0,0];
+    var allScores = [];
+    var letterCountsInChallenge = [];
+    var letterCountsInGuess = [];
+
+    for ( let ll =0; ll <6 ; ll++ ){
+
+        letterCountsInChallenge[ll] = 0;
+        letterCountsInGuess[ll] = 0;
+
+    }
+
+
+
+    var CountLettersinChallenge = function(){
+
+        for ( let kk = 0; kk < 4; kk++)
+        {
+            if (challenge[kk] == 0) {letterCountsInChallenge[0] = letterCountsInChallenge[0] + 1;}
+            if (challenge[kk] == 1) {letterCountsInChallenge[1] = letterCountsInChallenge[1] + 1;}
+            if (challenge[kk] == 2) {letterCountsInChallenge[2] = letterCountsInChallenge[2] + 1;}
+            if (challenge[kk] == 3) {letterCountsInChallenge[3] = letterCountsInChallenge[3] + 1;}
+            if (challenge[kk] == 4) {letterCountsInChallenge[4] = letterCountsInChallenge[4] + 1;}
+            if (challenge[kk] == 5) {letterCountsInChallenge[5] = letterCountsInChallenge[5] + 1;}
+
+
+        }
+    }
+
+
+    var CountLettersinGuess = function(){
+
+        for ( let kk = 0; kk < 4; kk++)
+        {
+
+            if (nextGuess[kk] == 0) {letterCountsInGuess[0] = letterCountsInGuess[0] + 1;}
+            if (nextGuess[kk] == 1) {letterCountsInGuess[1] = letterCountsInGuess[1] + 1;}
+            if (nextGuess[kk] == 2) {letterCountsInGuess[2] = letterCountsInGuess[2] + 1;}
+            if (nextGuess[kk] == 3) {letterCountsInGuess[3] = letterCountsInGuess[3] + 1;}
+            if (nextGuess[kk] == 4) {letterCountsInGuess[4] = letterCountsInGuess[4] + 1;}
+            if (nextGuess[kk] == 5) {letterCountsInGuess[5] = letterCountsInGuess[5] + 1;}
+
+
+        }
+    }
+
+
+    var checkGuess = function(){
+
+        // 0 is X , 1 is W , 2 is B
+
+        // check for correct scores
+
+        for ( let bb = 0; bb < 4; bb++)
+        {
+            if (nextGuess[bb] == challenge[bb]){
+                nextScore[bb] = 2;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+    /*
+
+    void codeCheck(char secretCode[4][10], char guessCode[4][10], int *blackPeg, int *whitePeg)
+{
+    int i, j, checkSecret[4] = {1,1,1,1}, checkGuess[4] = {1,1,1,1};
+    *blackPeg = *whitePeg = 0;
+
+    for(i=0; i<4; i++)      //if secret and guess's position and color are same, blackpeg increases and mark "check"
+        if(strcmp(guessCode[i], secretCode[i]) == 0)
+        {
+            ++*blackPeg;
+            checkSecret[i] = checkGuess[i] = 0;
+        }
+
+    for(i=0; i<4; i++)
+        for(j=0; j<4; j++)
+            if(strcmp(secretCode[i],guessCode[j]) == 0  &&  checkGuess[i]  &&  checkSecret[j]  &&  i != j)
+            {// determines crushes and eliminates extra whitePegs
+                ++*whitePeg;
+                checkSecret[j] = checkGuess[i] = 0;
+            }
+}
+
+
+
+     */
+
+
+
+
+
+    CountLettersinChallenge();
+
+    alert(letterCountsInChallenge.join("\n"));
+
+
+
+
+
+    var colors = document.createElement("SELECT");
+    var option0 = document.createElement("option");
+    option0.text = "Xanadu";
+    colors.add(option0, colors[0]);
+    var option1 = document.createElement("option");
+    option1.text = "Arsenic";
+    colors.add(option1, colors[1]);
+    var option2 = document.createElement("option");
+    option2.text = "Fallow";
+    colors.add(option2, colors[2]);
+    var option3 = document.createElement("option");
+    option3.text = "Gamboge";
+    colors.add(option3, colors[3]);
+    var option4 = document.createElement("option");
+    option4.text = "Niagara";
+    colors.add(option4, colors[4]);
+    var option5 = document.createElement("option");
+    option5.text = "Cerise";
+    colors.add(option5, colors[5]);
+
+
+    var colors2 = document.createElement("SELECT");
+    var option20 = document.createElement("option");
+    option20.text = "Xanadu";
+    colors2.add(option20, colors2[0]);
+    var option21 = document.createElement("option");
+    option21.text = "Arsenic";
+    colors2.add(option21, colors2[1]);
+    var option22 = document.createElement("option");
+    option22.text = "Fallow";
+    colors2.add(option22, colors2[2]);
+    var option23 = document.createElement("option");
+    option23.text = "Gamboge";
+    colors2.add(option23, colors2[3]);
+    var option24 = document.createElement("option");
+    option24.text = "Niagara";
+    colors2.add(option24, colors2[4]);
+    var option25 = document.createElement("option");
+    option25.text = "Cerise";
+    colors2.add(option25, colors2[5]);
+
+
+    var colors3 = document.createElement("SELECT");
+    var option30 = document.createElement("option");
+    option30.text = "Xanadu";
+    colors3.add(option30, colors3[0]);
+    var option31 = document.createElement("option");
+    option31.text = "Arsenic";
+    colors3.add(option31, colors3[1]);
+    var option32 = document.createElement("option");
+    option32.text = "Fallow";
+    colors3.add(option32, colors3[2]);
+    var option33 = document.createElement("option");
+    option33.text = "Gamboge";
+    colors3.add(option33, colors3[3]);
+    var option34 = document.createElement("option");
+    option34.text = "Niagara";
+    colors3.add(option34, colors3[4]);
+    var option35 = document.createElement("option");
+    option35.text = "Cerise";
+    colors3.add(option35, colors3[5]);
+
+
+    var colors4 = document.createElement("SELECT");
+    var option40 = document.createElement("option");
+    option40.text = "Xanadu";
+    colors4.add(option40, colors4[0]);
+    var option41 = document.createElement("option");
+    option41.text = "Arsenic";
+    colors4.add(option41, colors4[1]);
+    var option42 = document.createElement("option");
+    option42.text = "Fallow";
+    colors4.add(option42, colors4[2]);
+    var option43 = document.createElement("option");
+    option43.text = "Gamboge";
+    colors4.add(option43, colors4[3]);
+    var option44 = document.createElement("option");
+    option44.text = "Niagara";
+    colors4.add(option44, colors4[4]);
+    var option45 = document.createElement("option");
+    option45.text = "Cerise";
+    colors4.add(option45, colors4[5]);
+
+
+
+
+    var colorsArray = ["X", "A", "F", "G", "N", "C"];
+
+
+
+
+
+
+
+
+    var guessBtn = document.createElement('button');
+    guessBtn.innerText = 'addToGuess';
+    guessBtn.classList.add('btn', 'btn-primary');
+    guessBtn.type = 'submit';
+    page8.append(guessBtn);
+    page8.append(colors);
+    page8.append(colors2);
+    page8.append(colors3);
+    page8.append(colors4);
+
+
+
+    guessBtn.addEventListener('click', function (event) {
+
+
+
+        nextGuess.push([colors.selectedIndex]);
+        nextGuess.push([colors2.selectedIndex]);
+        nextGuess.push([colors3.selectedIndex]);
+        nextGuess.push([colors4.selectedIndex]);
+
+        checkGuess();
+
+
+
+        alert(nextGuess.join("\n"));
+        CountLettersinGuess();
+        alert(letterCountsInGuess.join("\n"));
+
+
+
+    });
+
+
+
+
+
+    document.getElementById('renderhere').append(page8);
+
+
+
+
+});
