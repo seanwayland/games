@@ -1119,7 +1119,7 @@ addEventToButton(8, function (event) {
     }
 
 
-    alert(challenge.join("\n"));
+    //alert(challenge.join("\n"));
 
 
 
@@ -1129,6 +1129,7 @@ addEventToButton(8, function (event) {
     var nextGuess = [];
 
     var nextScore = [0,0,0,0];
+    var allGuesses = [];
     var allScores = [];
     var letterCountsInChallenge = [];
     var letterCountsInGuess = [];
@@ -1198,25 +1199,29 @@ addEventToButton(8, function (event) {
         //
         // make a copy of the number of letters in the code so it can be decremented
 
-        var letterCountcopy = letterCountsInChallenge.slice(0);
+        letterCountcopy = letterCountsInChallenge.slice(0);
 
-        // which positions of score have been checked
-        var scoreChecked = [0, 0, 0, 0];
+       // alert(letterCountcopy.toString());
+
 
         // check for perfectly correct answers
 
         for (let bb = 0; bb < 4; bb++) {
             if (nextGuess[bb] == challenge[bb]) {
                 nextScore[bb] = 2;
+                letterCountcopy[bb] = letterCountcopy[bb] - 1;
+
                 //scoreChecked[bb] = 1;
             }
         }
+
+        letterCountStringCopy.innerHTML =  "letter count copy: " + letterCountcopy.toString();
 
         // check for partially correct answers
         for (let cc = 0; cc < 4; cc++) {
 
             let gg = nextGuess[cc];
-            if ((nextScore[cc] < 1 ) && (letterCountcopy[gg]) > 0) {
+            if ((nextScore[cc] < 1 ) && ((letterCountcopy[gg]) > 0)) {
 
                 nextScore[cc] = 1;
                 letterCountcopy[gg] = letterCountcopy[gg] - 1;
@@ -1224,28 +1229,58 @@ addEventToButton(8, function (event) {
 
         }
 
-        alert(nextScore.join("\n"));
+        //alert(letterCountcopy.toString());
+
+
+        //alert(nextScore.join("\n"));
 
         CheckWin();
 
         turnsLeft -- ;
 
-        alert(turnsLeft);
+        //alert(turnsLeft);
+
+        guessesLeft.innerHTML = "";
+        guessesLeft.innerHTML = "Guesses left = " + turnsLeft;
+
 
         for ( let qq = 0; qq < 4; qq++)
         {
             allScores.push(nextScore[qq]);
+            allGuesses.push(nextGuess[qq]);
         }
 
-        alert(allScores.join("\n"));
+       // alert(allScores.join("\n"));
 
         // clear out arrays
+
+
+        /// populate the board ///
+
+        /// add guess (nextguess) to and result (nextScore) to board
+
+        /**
+        You guessed A-N-N-A (Result: W-E-B-B)
+        You guessed G-A-N-A (Result: E-B-B-B)
+        You guessed A-A-N-A (Result: E-B-B-B)
+        You guessed X-A-N-A (Result: B-B-B-B)
+
+         */
+
+        // for i < 3 add score then -
+        // then add 4
+        // then add comment
 
         nextGuess = [];
 
         nextScore = [0,0,0,0];
 
-        letterCountsInGuess = [0,0,0,0,0,0];
+        //letterCountcopy = [0,0,0,0,0,0];
+
+        //CountLettersinChallenge();
+
+
+
 
     }
 
@@ -1254,47 +1289,9 @@ addEventToButton(8, function (event) {
 
 
 
-
-
-
-
-
-
-
-
-
-    /*
-
-    void codeCheck(char secretCode[4][10], char guessCode[4][10], int *blackPeg, int *whitePeg)
-{
-    int i, j, checkSecret[4] = {1,1,1,1}, checkGuess[4] = {1,1,1,1};
-    *blackPeg = *whitePeg = 0;
-
-    for(i=0; i<4; i++)      //if secret and guess's position and color are same, blackpeg increases and mark "check"
-        if(strcmp(guessCode[i], secretCode[i]) == 0)
-        {
-            ++*blackPeg;
-            checkSecret[i] = checkGuess[i] = 0;
-        }
-
-    for(i=0; i<4; i++)
-        for(j=0; j<4; j++)
-            if(strcmp(secretCode[i],guessCode[j]) == 0  &&  checkGuess[i]  &&  checkSecret[j]  &&  i != j)
-            {// determines crushes and eliminates extra whitePegs
-                ++*whitePeg;
-                checkSecret[j] = checkGuess[i] = 0;
-            }
-}
-
-
-
-     */
-
-
-
-
-
     CountLettersinChallenge();
+
+    var letterCountcopy = letterCountsInChallenge.slice(0);
 
     alert(letterCountsInChallenge.join("\n"));
 
@@ -1387,8 +1384,15 @@ addEventToButton(8, function (event) {
 
 
 
-
     var colorsArray = ["X", "A", "F", "G", "N", "C"];
+    var scoresArray = ["X", "W" , "B" ];
+    var lineNumbers = ["i", "ii", "iii", "iv" , "v" , "vi", "vii" , "viii"];
+
+    var returnSpace = document.createElement("BR");
+
+
+    var resultList = document.createElement("OL");
+    resultList.type = "i";
 
 
 
@@ -1398,14 +1402,44 @@ addEventToButton(8, function (event) {
 
 
     var guessBtn = document.createElement('button');
-    guessBtn.innerText = 'addToGuess';
+    guessBtn.innerText = 'Make a Guess';
     guessBtn.classList.add('btn', 'btn-primary');
     guessBtn.type = 'submit';
     page8.append(guessBtn);
+    page8.append(returnSpace);
     page8.append(colors);
     page8.append(colors2);
     page8.append(colors3);
     page8.append(colors4);
+
+
+    // populate result List
+
+
+
+
+    page8.append(resultList);
+
+    var guessesLeft = document.createElement("div");
+    guessesLeft.innerHTML = "Guesses left = " + turnsLeft;
+    page8.append(guessesLeft);
+
+    var letterCountString = document.createElement("div");
+    letterCountString.innerHTML = " letter counts: " + letterCountsInChallenge.toString();
+    page8.append(letterCountString);
+
+    var letterCountStringCopy = document.createElement("div");
+    letterCountStringCopy.innerHTML = "";
+    page8.append(letterCountStringCopy);
+
+
+
+    var secretCode = document.createElement("div");
+
+    secretCode.innerHTML = "Secret Code is : " + colorsArray[challenge[0]] + "-" + colorsArray[challenge[1]] + "-" + colorsArray[challenge[2]] + "-" + colorsArray[challenge[3]] ;
+    page8.append(secretCode);
+
+
 
 
 
@@ -1423,9 +1457,36 @@ addEventToButton(8, function (event) {
 
 
         alert(nextGuess.join("\n"));
-        CountLettersinGuess();
-        alert(letterCountsInGuess.join("\n"));
+        //CountLettersinGuess();
+        //alert(letterCountsInGuess.join("\n"));
         checkGuess();
+
+
+        // populate result List
+
+        resultList.innerHTML = "";
+
+        var lineNumber = 0;
+
+
+        for ( let rl = 0; rl <  8 - turnsLeft ; rl ++ ){
+
+
+
+            var newResultLine = document.createElement("Li");
+            newResultLine.innerHTML = "You Guessed " + colorsArray[allGuesses[lineNumber*4]] + "-" + colorsArray[allGuesses[1 + lineNumber*4]] + "-" + colorsArray[allGuesses[2 + lineNumber*4]] + "-" + colorsArray[allGuesses[3 + lineNumber*4]] + " (Result: " + scoresArray[allScores[0 + lineNumber*4]] + "-" + scoresArray[allScores[1 + lineNumber*4]] + "-" + scoresArray[allScores[2 + lineNumber*4]] + "-" + scoresArray[allScores[3 + lineNumber*4]] + ")";
+            resultList.append(newResultLine);
+
+            lineNumber++ ;
+
+
+
+
+        }
+
+
+
+
 
 
 
@@ -1434,9 +1495,7 @@ addEventToButton(8, function (event) {
 
 
 
-
     document.getElementById('renderhere').append(page8);
-
 
 
 
