@@ -1126,7 +1126,7 @@ addEventToButton(8, function (event) {
 
 
 
-    var nextGuess = [0,0,0,0];
+    var nextGuess = [];
 
     var nextScore = [0,0,0,0];
     var allScores = [];
@@ -1137,6 +1137,22 @@ addEventToButton(8, function (event) {
 
         letterCountsInChallenge[ll] = 0;
         letterCountsInGuess[ll] = 0;
+
+    }
+
+    var CheckWin = function(){
+
+        var tot = 0;
+
+        for ( let ff = 0; ff < 4 ; ff ++ )
+        {
+            if (nextScore[ff] == 2) { tot ++;
+
+            }
+        }
+
+        if ( tot == 4 ) { alert("you win") ; }
+
 
     }
 
@@ -1175,31 +1191,76 @@ addEventToButton(8, function (event) {
     }
 
 
-    var checkGuess = function(){
+    var checkGuess = function() {
 
         // 0 is X , 1 is W , 2 is B
-
         // check for correct scores
+        //
+        // make a copy of the number of letters in the code so it can be decremented
 
-        for ( let bb = 0; bb < 4; bb++)
-        {
-            if (nextGuess[bb] == challenge[bb]){
+        var letterCountcopy = letterCountsInChallenge.slice(0);
+
+        // which positions of score have been checked
+        var scoreChecked = [0, 0, 0, 0];
+
+        // check for perfectly correct answers
+
+        for (let bb = 0; bb < 4; bb++) {
+            if (nextGuess[bb] == challenge[bb]) {
                 nextScore[bb] = 2;
+                //scoreChecked[bb] = 1;
             }
         }
 
+        // check for partially correct answers
+        for (let cc = 0; cc < 4; cc++) {
 
+            let gg = nextGuess[cc];
+            if ((nextScore[cc] < 1 ) && (letterCountcopy[gg]) > 0) {
 
+                nextScore[cc] = 1;
+                letterCountcopy[gg] = letterCountcopy[gg] - 1;
+            }
 
+        }
 
+        alert(nextScore.join("\n"));
 
+        CheckWin();
 
+        turnsLeft -- ;
 
+        alert(turnsLeft);
 
+        for ( let qq = 0; qq < 4; qq++)
+        {
+            allScores.push(nextScore[qq]);
+        }
 
+        alert(allScores.join("\n"));
 
+        // clear out arrays
+
+        nextGuess = [];
+
+        nextScore = [0,0,0,0];
+
+        letterCountsInGuess = [0,0,0,0,0,0];
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /*
@@ -1357,13 +1418,14 @@ addEventToButton(8, function (event) {
         nextGuess.push([colors3.selectedIndex]);
         nextGuess.push([colors4.selectedIndex]);
 
-        checkGuess();
+
 
 
 
         alert(nextGuess.join("\n"));
         CountLettersinGuess();
         alert(letterCountsInGuess.join("\n"));
+        checkGuess();
 
 
 
