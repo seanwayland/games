@@ -1141,6 +1141,8 @@ addEventToButton(8, function (event) {
 
     }
 
+    var randomComments = ["Still cant get it ?? You are stupid enough to become PM of Britain!!", "Is that all you have ? Compared to you TRUMP looks like Alan Turing ", "My 4 year old daughter could beat you at this !!! ", "Where did you brain go ? Did you leave it on the set of Xanadu ? ", "Am I playing against a human or a smarter than average chihuaha ", "I think I am going to change the name of this game into masterDumpkoff", "Your plays remind me of Dad's Army.", "Lucky you are not trying to escape from Alcatraz " , "Mr ED could destroy you at this game!!! ", "Kiss me bitch you got it wrong AGAIN "  ]
+
     var CheckWin = function(){
 
         var tot = 0;
@@ -1152,7 +1154,13 @@ addEventToButton(8, function (event) {
             }
         }
 
-        if ( tot == 4 ) { alert("you win") ; }
+        if ( tot == 4 ) { page8.append(youWin);
+            guessBtn.disabled = true;
+
+            colors.disabled = true;
+            colors2.disabled = true;
+            colors3.disabled = true;
+            colors4.disabled = true;}
 
 
     }
@@ -1215,7 +1223,7 @@ addEventToButton(8, function (event) {
             }
         }
 
-        letterCountStringCopy.innerHTML =  "letter count copy: " + letterCountcopy.toString();
+        //letterCountStringCopy.innerHTML =  "letter count copy: " + letterCountcopy.toString();
 
         // check for partially correct answers
         for (let cc = 0; cc < 4; cc++) {
@@ -1229,19 +1237,29 @@ addEventToButton(8, function (event) {
 
         }
 
-        //alert(letterCountcopy.toString());
 
-
-        //alert(nextScore.join("\n"));
 
         CheckWin();
 
+        if (turnsLeft == 1){
+            page8.append(youLose);
+            guessBtn.disabled = true;
+            colors.disabled = true;
+            colors2.disabled = true;
+            colors3.disabled = true;
+            colors4.disabled = true;
+
+        }
+
         turnsLeft -- ;
 
-        //alert(turnsLeft);
 
         guessesLeft.innerHTML = "";
         guessesLeft.innerHTML = "Guesses left = " + turnsLeft;
+
+        var comment = Math.floor(Math.random() * 9);
+
+        retort.innerHTML = randomComments[comment];
 
 
         for ( let qq = 0; qq < 4; qq++)
@@ -1250,9 +1268,7 @@ addEventToButton(8, function (event) {
             allGuesses.push(nextGuess[qq]);
         }
 
-       // alert(allScores.join("\n"));
 
-        // clear out arrays
 
 
         /// populate the board ///
@@ -1275,11 +1291,6 @@ addEventToButton(8, function (event) {
 
         nextScore = [0,0,0,0];
 
-        //letterCountcopy = [0,0,0,0,0,0];
-
-        //CountLettersinChallenge();
-
-
 
 
     }
@@ -1293,7 +1304,7 @@ addEventToButton(8, function (event) {
 
     var letterCountcopy = letterCountsInChallenge.slice(0);
 
-    alert(letterCountsInChallenge.join("\n"));
+    //alert(letterCountsInChallenge.join("\n"));
 
 
 
@@ -1386,7 +1397,7 @@ addEventToButton(8, function (event) {
 
     var colorsArray = ["X", "A", "F", "G", "N", "C"];
     var scoresArray = ["X", "W" , "B" ];
-    var lineNumbers = ["i", "ii", "iii", "iv" , "v" , "vi", "vii" , "viii"];
+
 
     var returnSpace = document.createElement("BR");
 
@@ -1394,7 +1405,8 @@ addEventToButton(8, function (event) {
     var resultList = document.createElement("OL");
     resultList.type = "i";
 
-
+    var retort = document.createElement("div");
+    retort.innerhtml = "";
 
 
 
@@ -1421,9 +1433,11 @@ addEventToButton(8, function (event) {
     page8.append(resultList);
 
     var guessesLeft = document.createElement("div");
-    guessesLeft.innerHTML = "Guesses left = " + turnsLeft;
+    guessesLeft.innerHTML = "Turns remaining = " + turnsLeft;
     page8.append(guessesLeft);
+    page8.append(retort);
 
+   /**
     var letterCountString = document.createElement("div");
     letterCountString.innerHTML = " letter counts: " + letterCountsInChallenge.toString();
     page8.append(letterCountString);
@@ -1432,12 +1446,30 @@ addEventToButton(8, function (event) {
     letterCountStringCopy.innerHTML = "";
     page8.append(letterCountStringCopy);
 
+    **/
 
+
+   /**
 
     var secretCode = document.createElement("div");
 
     secretCode.innerHTML = "Secret Code is : " + colorsArray[challenge[0]] + "-" + colorsArray[challenge[1]] + "-" + colorsArray[challenge[2]] + "-" + colorsArray[challenge[3]] ;
-    page8.append(secretCode);
+   // page8.append(secretCode)
+
+    **/
+
+    var youWin = document.createElement("dir");
+    youWin.innerHTML = "You Win";
+
+    var youLose = document.createElement("dir");
+    youLose.innerHTML = "You fool: my code was " + colorsArray[challenge[0]] + "-" + colorsArray[challenge[1]] + "-" + colorsArray[challenge[2]] + "-" + colorsArray[challenge[3]] ;
+
+
+
+
+
+
+
 
 
 
@@ -1456,7 +1488,7 @@ addEventToButton(8, function (event) {
 
 
 
-        alert(nextGuess.join("\n"));
+       // alert(nextGuess.join("\n"));
         //CountLettersinGuess();
         //alert(letterCountsInGuess.join("\n"));
         checkGuess();
