@@ -1532,3 +1532,83 @@ addEventToButton(8, function (event) {
 
 
 });
+
+
+addEventToButton(9, function (event) {
+
+
+    /**
+     *   grocery_shop = {
+    aisles: [
+      {
+        name: "fruit and veg",
+        items: [
+          { name: "apples", cost: "4.50", per: "kg" },
+          { name: "bananas", cost: "3.50", per: "kg" },
+          { name: "mandarins", cost: "2.50", per: "kg" }
+        ]
+      },
+      {
+        name: "bakery",
+        items: [
+          { name: "sandwich loaf", cost: "2.50", per: "ea" },
+          { name: "tiger loaf", cost: "3.50", per: "ea" },
+          { name: "baguette", cost: "2.50", per: "ea" },
+          { name: "cob", cost: "1.50", per: "ea"}
+        ]
+      },
+      {
+        name: "biscuits",
+        items: [
+          { name: "jaffa cakes", cost: "2.50", per: "200g" },
+          { name: "fig rolls", cost: "3.50", per: "150g" },
+          { name: "jam drops", cost: "2.50", per: "300g" }
+        ]
+      }
+    ]
+  }
+
+     */
+
+
+    /**
+     * plus minus buttons
+    https://codepen.io/nevcanuludas/pen/WbNbow
+
+    */
+
+
+    document.getElementById('renderhere').childNodes.forEach(value => value.remove());
+    document.getElementById('renderhere').innerHTML = "";
+    var page9 = document.createElement("div");
+
+    var aisleCount = 0;
+    var aisleItems = [];
+    var totalItems = 0;
+
+
+
+    grocery_shop.aisles.forEach(function(aisle){
+
+        aisleCount ++;
+
+    });
+
+    alert(aisleCount);
+
+    for ( var ik = 0; ik < aisleCount ; ik ++) {
+        grocery_shop.aisles[ik].items.forEach(function () {
+            aisleItems[ik] = aisleItems[ik] + 1;
+            totalItems ++;
+
+        });
+    }
+
+
+    alert(totalItems);
+
+
+
+
+
+});
