@@ -1585,6 +1585,7 @@ addEventToButton(9, function (event) {
     var aisleCount = 0;
     var aisleItems = [];
     var totalItems = 0;
+    var itemCounts = [];
 
 
 
@@ -1594,7 +1595,7 @@ addEventToButton(9, function (event) {
 
     });
 
-    alert(aisleCount);
+    //alert(aisleCount);
 
     for ( var ik = 0; ik < aisleCount ; ik ++) {
         grocery_shop.aisles[ik].items.forEach(function () {
@@ -1605,7 +1606,102 @@ addEventToButton(9, function (event) {
     }
 
 
-    alert(totalItems);
+    //alert(totalItems);
+
+    for ( var po = 0; po < totalItems; po ++)
+    {
+        itemCounts.push(0);
+    }
+
+    //alert(itemCounts.toString());
+
+
+    page9.innerHTML = "Welcome to the Grocery Shop";
+    document.getElementById('renderhere').append(page9);
+
+
+    var itemList = document.createElement("div");
+    page9.append(itemList);
+
+    page9.innerHTML = "Welcome to the Grocery Shop";
+    document.getElementById('renderhere').append(page9);
+
+    for ( var qw = 0; qw < aisleCount; qw ++){
+
+        // create button for each aisle and enter each aisle with button
+
+        var bk = document.createElement("BR");
+        page9.append(bk);
+
+
+        var newBtn = document.createElement('button');
+        newBtn.innerText = 'enter ' + grocery_shop.aisles[qw].name + " aisle";
+        newBtn.id = "aisle" + grocery_shop.aisles[qw].name;
+        newBtn.classList.add('btn', 'btn-primary');
+        newBtn.type = 'submit';
+        newBtn.param = qw;
+
+        newBtn.addEventListener('click', myFunc, false);
+
+        function myFunc(evt)
+        {
+            window.alert( evt.target.param );
+        }
+
+       // newBtn.addEventListener("onClick"){function}
+
+
+
+
+
+
+
+
+
+
+        var itemDisplay = document.createElement("div");
+
+        page9.append(newBtn);
+
+
+
+
+
+        /*
+
+        newBtn.addEventListener('click', function (event) {
+
+            if (aisle.name === "fruit and veg") { currentAisle = 0;}
+            if (aisle.name === "bakery") { currentAisle = 1;}
+            if (aisle.name === "biscuits") { currentAisle = 2;}
+            aisleMsg.innerHTML = "";
+            aisleMsg.innerHTML = "Welcome to the  " + aisle.name + " aisle";
+            itemList.innerHTML = "";
+            //alert(currentAisle);
+
+
+        });
+
+
+         */
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
