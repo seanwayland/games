@@ -1583,48 +1583,202 @@ addEventToButton(9, function (event) {
     var page9 = document.createElement("div");
 
     var aisleCount = 0;
-    var aisleItems = [];
+    var aisleItems = []
     var totalItems = 0;
     var itemCounts = [];
+    var inAisle = 0;
+    var itemNames = [];
+    var itemPrices = [];
+    var totalCost = 0 ;
+
+
 
 
 
     grocery_shop.aisles.forEach(function(aisle){
 
         aisleCount ++;
+        aisleItems.push(0);
+
 
     });
 
     //alert(aisleCount);
-
+    var thisItem = 0;
     for ( var ik = 0; ik < aisleCount ; ik ++) {
         grocery_shop.aisles[ik].items.forEach(function () {
             aisleItems[ik] = aisleItems[ik] + 1;
             totalItems ++;
-
+            itemPrices.push(grocery_shop.aisles[ik].items[thisItem].cost);
+            thisItem ++
         });
+        thisItem = 0;
     }
 
 
-    //alert(totalItems);
+   // alert(itemPrices.toString());
 
     for ( var po = 0; po < totalItems; po ++)
     {
         itemCounts.push(0);
+        itemPrices.push(0);
+
     }
 
     //alert(itemCounts.toString());
 
+    var upDateTotal = function() {
+
+        totalCost = 0;
+
+        for ( var yy = 0; yy < totalItems ; yy ++)
+        {
+
+            totalCost = totalCost + (itemCounts[yy]*itemPrices[yy]) ;
+
+            totalDisplay.innerHTML = "Your total is $" +  totalCost.toFixed(2);
+
+
+        }
+
+
+    }
+
 
     page9.innerHTML = "Welcome to the Grocery Shop";
     document.getElementById('renderhere').append(page9);
+
+
+
 
 
     var itemList = document.createElement("div");
-    page9.append(itemList);
 
-    page9.innerHTML = "Welcome to the Grocery Shop";
-    document.getElementById('renderhere').append(page9);
+
+    /**
+     * add all the items but dont display them
+     *
+     */
+
+    var itemNumber = 0;
+
+    for ( var ff = 0; ff < aisleCount ; ff ++) {
+
+         for (var gg = 0; gg < aisleItems[ff]; gg++) {
+
+
+             var itemDisplay = document.createElement("div");
+
+             var bk6 = document.createElement("BR");
+             itemList.append(bk6);
+             bk6.className = ff.toString();
+
+
+
+             itemList.append(itemDisplay);
+             var item = grocery_shop.aisles[ff].items[gg].name;
+             itemDisplay.className = ff.toString();
+            itemDisplay.innerHTML = item;
+            itemNames.push(item);
+
+             var bk2 = document.createElement("BR");
+             itemList.append(bk2);
+             bk2.className = ff.toString();
+
+
+
+             var countItem = document.createElement("input");
+             countItem.type = "text";
+             countItem.value = "0";
+             countItem.id = "value" + itemNumber.toString();
+             countItem.className = ff.toString();
+
+
+
+
+            //  countItem.display = "none";
+
+
+
+             //alert(itemCounts[item]);
+             itemList.append(countItem);
+
+
+
+             var countMoins = document.createElement("input");
+             countMoins.type = "button";
+            // countMoins.id = (ff*2).toString();
+             countMoins.value = "-";
+             countMoins.className = ff.toString();
+             //countMoins.onclick = reply_click(this.id);
+             countMoins.it = itemNumber;
+
+
+
+             countMoins.addEventListener('click', MinusItem, false);
+
+             function MinusItem(evt)
+             {
+
+
+                 if ( itemCounts[evt.target.it] > 0){
+                 itemCounts[evt.target.it] = itemCounts[evt.target.it] -1 ;
+                 upDateTotal();
+                 }
+                 else {}
+
+
+
+                  var valNumString = "value" + evt.target.it.toString() ;
+
+                // document.getElementById("itemValue" + itemNames[evt.target.it]).value = (itemCounts[evt.target.it]).toString();
+                 document.getElementById(valNumString).value = itemCounts[evt.target.it].toString() ;
+
+                 //alert (itemCounts[evt.target.it]);
+             }
+
+             //countItem.onclick = minus(item);
+             itemList.append(countMoins);
+
+             var countPlus = document.createElement("input");
+             countPlus.type = "button";
+             countPlus.id = item + "plus";
+             countPlus.value = "+";
+             countPlus.it = itemNumber;
+             countPlus.className = ff.toString();
+            // alert(countPlus.class);
+
+             itemNumber ++;
+
+             countPlus.addEventListener('click', addItem, false);
+
+             function addItem(evt)
+             {
+                 itemCounts[evt.target.it] = itemCounts[evt.target.it] + 1;
+
+                 var valNumString = "value" + evt.target.it.toString() ;
+
+                 // document.getElementById("itemValue" + itemNames[evt.target.it]).value = (itemCounts[evt.target.it]).toString();
+                 document.getElementById(valNumString).value = itemCounts[evt.target.it].toString() ;
+
+                 upDateTotal();
+
+                 //alert (itemCounts[evt.target.it]);
+             }
+
+             itemList.append(countPlus);
+
+         }
+     }
+
+     page9.append(itemList);
+
+    var totalDisplay = document.createElement("div");
+    totalDisplay.innerHTML = "Your total is $" +  totalCost;
+    page9.append(totalDisplay);
+
+
+
 
     for ( var qw = 0; qw < aisleCount; qw ++){
 
@@ -1639,29 +1793,49 @@ addEventToButton(9, function (event) {
         newBtn.id = "aisle" + grocery_shop.aisles[qw].name;
         newBtn.classList.add('btn', 'btn-primary');
         newBtn.type = 'submit';
-        newBtn.param = qw;
+        newBtn.myAisle = qw;
 
-        newBtn.addEventListener('click', myFunc, false);
+        newBtn.addEventListener('click', changeAisle, false);
 
-        function myFunc(evt)
-        {
-            window.alert( evt.target.param );
+        function changeAisle(evt) {
+            var newAisle = evt.target.myAisle;
+            inAisle = evt.target.myAisle;
+
+            for (var lll = 0; lll < aisleCount; lll++) {
+                if (lll === newAisle) {
+                   // alert(lll.toString());
+                    var divsToShow = document.getElementsByClassName(lll.toString()); //divsToHide is an array
+                    //alert(divsToShow.toString());
+                    for (let i = 0; i < divsToShow.length; i++) {
+                        //divsToShow[i].style.visibility = "visible"; // or
+                        divsToShow[i].style.display = "inline"; // depending on what you're doing
+                    }
+
+                }
+
+                else {
+                   // alert(lll.toString());
+                    var divsToHide = document.getElementsByClassName(lll.toString()); //divsToHide is an array
+                   // alert(divsToShow.toString());
+                    for (let i = 0; i < divsToHide.length; i++) {
+                        divsToHide[i].style.display = "none"; // or
+                      //  divsToHide[i].style.visibility = "hidden"; // depending on what you're doing
+                    }
+
+                }
+
+
+            }
         }
 
-       // newBtn.addEventListener("onClick"){function}
 
 
 
 
-
-
-
-
-
-
-        var itemDisplay = document.createElement("div");
 
         page9.append(newBtn);
+
+
 
 
 
