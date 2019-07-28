@@ -24,6 +24,9 @@
 
 
 addEventToButton(2, function (event) {
+
+    document.getElementById('renderhere').childNodes.forEach(value => value.remove());
+    document.getElementById('renderhere').innerHTML = "";
     var Guesses = 0; // number of attempted guesses 
     var num = Math.floor(Math.random() * 20) + 1 // random number chosen 
 
@@ -39,7 +42,7 @@ addEventToButton(2, function (event) {
     //let guesses = document.createElement(HTMLSpanElement(data-output));
 
     //span[data-output="guesses"]',
-    htmlFormElement.innerHTML = '<p> Please enter a number (integer) between 1 and 20 !<br /> </p><div class="form-group"><label for="btn1name">Number</label><input type="number" class="form-control" name="number" required="required" id="btn1name" placeholder="Number" /></div>';
+    htmlFormElement.innerHTML = '<p> Guessing Game !! Please enter a number (integer) between 1 and 20 !<br /> </p><div class="form-group"><label for="btn1name">Number</label><input type="number" class="form-control" name="number" required="required" id="btn1name" placeholder="Number" /></div>';
     //Or the second:
     //Now build the submit button
     const submitBtn = document.createElement('button');
@@ -154,6 +157,8 @@ addEventToButton(3, function (event) {
     //create title and delete button and add button on their own element
 
     var page3 = document.createElement('div');
+
+
 
     var title = document.createElement('div');
     title.textContent = "To do list. To add items fill out field and hit add button. To Delete check box below and hit delete ";
@@ -335,10 +340,12 @@ addEventToButton(4, function (event) {
     document.getElementById('renderhere').innerHTML = "";
 
 
+
+
     var messages = document.createElement('div');
     messages.id = "mess";
     messages.classname = "messages";
-    messages.innerHTML = "<h2>Crosses start</h2>";
+    messages.innerHTML = "<p>NAUGHTS AND CROSSES GAME!! Crosses start !!!</p>";
 
 
     var instructions = document.createElement('div');
@@ -348,7 +355,7 @@ addEventToButton(4, function (event) {
 
     var idArray = ['itile0', 'itile1', 'itile2', 'itile3', 'itile4', 'itile5', 'itile6', 'itile7', 'itile8'];
     var idtArray = ['ttile0', 'ttile1', 'ttile2', 'ttile3', 'ttile4', 'ttile5', 'ttile6', 'ttile7', 'ttile8'];
-    var tilePlayed = [false, false, false, false, false, false, false, false];
+    var tilePlayed = [false, false, false, false, false, false, false, false, false];
     var XPlayed = [];
     var OPlayed = [];
 
@@ -564,12 +571,12 @@ addEventToButton(4, function (event) {
             if (toggle) {
                 tileText0.innerHTML = "0";
                 OPlayed.push(0);
-                alert("X turn");
+                instructions.innerHTML = "CROSSES TURN!";
 
             } else {
                 tileText0.innerHTML = "X";
                 XPlayed.push(0);
-                alert("O turn");
+                instructions.innerHTML = "NAUGHTS TURN!";
 
             }
 
@@ -591,12 +598,12 @@ addEventToButton(4, function (event) {
             if (toggle) {
                 tileText1.innerHTML = "0";
                 OPlayed.push(1);
-                alert("X turn");
+                instructions.innerHTML = "CROSSES TURN!";
 
             } else {
                 tileText1.innerHTML = "X";
                 XPlayed.push(1);
-                alert("O turn");
+                instructions.innerHTML = "NAUGHTS TURN!";
 
             }
 
@@ -617,12 +624,12 @@ addEventToButton(4, function (event) {
             if (toggle) {
                 tileText2.innerHTML = "0";
                 OPlayed.push(2);
-                alert("X turn");
+                instructions.innerHTML = "CROSSES TURN!";
 
             } else {
                 tileText2.innerHTML = "X";
                 XPlayed.push(2);
-                alert("O turn");
+                instructions.innerHTML = "NAUGHTS TURN!";
 
             }
         }
@@ -644,12 +651,12 @@ addEventToButton(4, function (event) {
             if (toggle) {
                 tileText3.innerHTML = "0";
                 OPlayed.push(3);
-                alert("X turn");
+                instructions.innerHTML = "CROSSES TURN!";
 
             } else {
                 tileText3.innerHTML = "X";
                 XPlayed.push(3);
-                alert("O turn");
+                instructions.innerHTML = "NAUGHTS TURN!";
 
             }
         }
@@ -669,12 +676,12 @@ addEventToButton(4, function (event) {
             if (toggle) {
                 tileText4.innerHTML = "0";
                 OPlayed.push(4);
-                alert("X turn");
+                instructions.innerHTML = "CROSSES TURN!";
 
             } else {
                 tileText4.innerHTML = "X";
                 XPlayed.push(4);
-                alert("O turn");
+                instructions.innerHTML = "NAUGHTS TURN!";
 
             }
         }
@@ -692,12 +699,12 @@ addEventToButton(4, function (event) {
             if (toggle) {
                 tileText5.innerHTML = "0";
                 OPlayed.push(5);
-                alert("X turn");
+                instructions.innerHTML = "CROSSES TURN!";
 
             } else {
                 tileText5.innerHTML = "X";
                 XPlayed.push(5);
-                alert("O turn");
+                instructions.innerHTML = "NAUGHTS TURN!";
 
             }
         }
@@ -715,12 +722,12 @@ addEventToButton(4, function (event) {
             if (toggle) {
                 tileText6.innerHTML = "0";
                 OPlayed.push(6);
-                alert("X turn");
+                instructions.innerHTML = "CROSSES TURN!";
 
             } else {
                 tileText6.innerHTML = "X";
                 XPlayed.push(6);
-                alert("O turn");
+                instructions.innerHTML = "NAUGHTS TURN!";
 
             }
 
@@ -740,13 +747,13 @@ addEventToButton(4, function (event) {
             if (toggle) {
                 tileText7.innerHTML = "0";
                 OPlayed.push(7);
-                alert("X turn");
+                instructions.innerHTML = "CROSSES TURN!";
 
             } else {
                 tileText7.innerHTML = "X";
                 XPlayed.push(7);
 
-                alert("O turn");
+                instructions.innerHTML = "NAUGHTS TURN!";
 
             }
         }
@@ -764,12 +771,12 @@ addEventToButton(4, function (event) {
             if (toggle) {
                 tileText8.innerHTML = "0";
                 OPlayed.push(8);
-                alert("X turn");
+                instructions.innerHTML = "CROSSES TURN!";
 
             } else {
                 tileText8.innerHTML = "X";
                 XPlayed.push(8);
-                alert("O turn");
+                instructions.innerHTML = "NAUGHTS TURN!";
 
 
             }
@@ -789,12 +796,12 @@ addEventToButton(4, function (event) {
             numPlays++;
             // if one player has 3 or more icons, and it matches a winning array, declare winner.
             if (XPlayed.length >= 3 && compareToWinningArrays(XPlayed)) {
-                alert("X WON");
+                instructions.innerHTML = "CROSSES WINS!!!";
             } else if
             (OPlayed.length >= 3 && compareToWinningArrays(OPlayed)) {
-                alert("O WON");
+                instructions.innerHTML = "NAUGHTS WINS!!!";
             } else if (numPlays === 9) {
-                alert("It's a tie ")
+                instructions.innerHTML = "DRAW !!!";
             }
 
 
@@ -855,6 +862,11 @@ addEventToButton(5, function (event) {
     var paint;
     var mouseX;
     var mouseY;
+
+    var tit = document.createElement('div');
+    tit.innerHTML = "Use mouse to draw in box !! "
+    document.getElementById('renderhere').append(tit);
+
 
 
 
@@ -955,6 +967,11 @@ addEventToButton(6, function (event) {
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
     document.getElementById('renderhere').innerHTML = "";
 
+    var title6 = document.createElement("div");
+    title6.innerHTML = "SVG GRAPH OF SIN X";
+    document.getElementById('renderhere').append(title6);
+
+
 
 
 
@@ -999,10 +1016,15 @@ addEventToButton(7, function (event) {
 
         <canvas id="mycanvas" width="800" height="600"></canvas>
 
+
  */
+
+
+
     var myDiv = document.createElement('div');
     var Kentry = document.createElement("FORM");
     Kentry.setAttribute("id", "myForm");
+    Kentry.innerText = "graph of sin ( kx + t ) input value changes k by 0.01 ";
 
     myDiv.appendChild(Kentry);
 
@@ -1064,7 +1086,7 @@ addEventToButton(7, function (event) {
         let points = xs.map(x => {
 
 
-            let y = 200 + 50 * Math.sin((x + t) *K)
+            let y = 200 +  50*Math.sin( K*x + t)
 
             return [x, y]
         })
@@ -1075,7 +1097,7 @@ addEventToButton(7, function (event) {
 
         p2.setAttribute("d", path)
 
-        t = ((new Date()).getTime())/10;
+        t = ((new Date()).getTime())/100;
 
 
         requestAnimationFrame(animate)
@@ -1084,7 +1106,9 @@ addEventToButton(7, function (event) {
     animate()
 
 
-    document.getElementById('renderhere').append(myDiv,animatedSine);
+
+
+    document.getElementById('renderhere').append( myDiv,animatedSine);
 
 
 
@@ -1101,6 +1125,12 @@ addEventToButton(8, function (event) {
 
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
     document.getElementById('renderhere').innerHTML = "";
+
+    var title8 = document.createElement("div");
+    title8.innerHTML = "MASTERMIND GAME! The computer will generate a 4 item sequence of 6 colours, and allow the user 8 guesses at the sequence. Duplicates are allowed, blanks are not.\n" +
+        "\n" +
+        "The computer will then report the result back to the user, with \"W\" being \"Right colour, wrong slot\", \"B\" being \"Right colour, right slot\", and \"E\" being \"wrong color\" (or too many of that colour). ";
+    document.getElementById('renderhere').append(title8);
 
 
     var page8 = document.createElement('div');
@@ -1649,6 +1679,97 @@ addEventToButton(9, function (event) {
     document.getElementById('renderhere').append(page9);
 
 
+    var totalDisplay = document.createElement("div");
+    totalDisplay.innerHTML = "Your total is $" +  totalCost;
+    page9.append(totalDisplay);
+
+
+
+
+    for ( var qw = 0; qw < aisleCount; qw ++){
+
+        // create button for each aisle and enter each aisle with button
+
+        var bk = document.createElement("BR");
+        page9.append(bk);
+
+
+        var newBtn = document.createElement('button');
+        newBtn.innerText = 'enter ' + grocery_shop.aisles[qw].name + " aisle";
+        newBtn.id = "aisle" + grocery_shop.aisles[qw].name;
+        newBtn.classList.add('btn', 'btn-primary');
+        newBtn.type = 'submit';
+        newBtn.myAisle = qw;
+
+        newBtn.addEventListener('click', changeAisle, false);
+
+        function changeAisle(evt) {
+            var newAisle = evt.target.myAisle;
+            inAisle = evt.target.myAisle;
+
+            for (var lll = 0; lll < aisleCount; lll++) {
+                if (lll === newAisle) {
+                    // alert(lll.toString());
+                    var divsToShow = document.getElementsByClassName(lll.toString()); //divsToHide is an array
+                    //alert(divsToShow.toString());
+                    for (let i = 0; i < divsToShow.length; i++) {
+                        //divsToShow[i].style.visibility = "visible"; // or
+                        divsToShow[i].style.display = "inline"; // depending on what you're doing
+                    }
+
+                }
+
+                else {
+                    // alert(lll.toString());
+                    var divsToHide = document.getElementsByClassName(lll.toString()); //divsToHide is an array
+                    // alert(divsToShow.toString());
+                    for (let i = 0; i < divsToHide.length; i++) {
+                        divsToHide[i].style.display = "none"; // or
+                        //  divsToHide[i].style.visibility = "hidden"; // depending on what you're doing
+                    }
+
+                }
+
+
+            }
+        }
+
+
+
+
+
+
+        page9.append(newBtn);
+
+
+
+
+
+
+
+        /*
+
+        newBtn.addEventListener('click', function (event) {
+
+            if (aisle.name === "fruit and veg") { currentAisle = 0;}
+            if (aisle.name === "bakery") { currentAisle = 1;}
+            if (aisle.name === "biscuits") { currentAisle = 2;}
+            aisleMsg.innerHTML = "";
+            aisleMsg.innerHTML = "Welcome to the  " + aisle.name + " aisle";
+            itemList.innerHTML = "";
+            //alert(currentAisle);
+
+
+        });
+
+
+         */
+
+
+
+    }
+
+
 
 
 
@@ -1679,6 +1800,7 @@ addEventToButton(9, function (event) {
              var item = grocery_shop.aisles[ff].items[gg].name;
              itemDisplay.className = ff.toString();
             itemDisplay.innerHTML = item;
+             itemDisplay.display = "none";
             itemNames.push(item);
 
              var bk2 = document.createElement("BR");
@@ -1692,6 +1814,7 @@ addEventToButton(9, function (event) {
              countItem.value = "0";
              countItem.id = "value" + itemNumber.toString();
              countItem.className = ff.toString();
+             countItem.display = "none";
 
 
 
@@ -1705,6 +1828,7 @@ addEventToButton(9, function (event) {
 
 
 
+
              var countMoins = document.createElement("input");
              countMoins.type = "button";
             // countMoins.id = (ff*2).toString();
@@ -1712,6 +1836,7 @@ addEventToButton(9, function (event) {
              countMoins.className = ff.toString();
              //countMoins.onclick = reply_click(this.id);
              countMoins.it = itemNumber;
+             countMoins.display = "none";
 
 
 
@@ -1767,101 +1892,17 @@ addEventToButton(9, function (event) {
              }
 
              itemList.append(countPlus);
+             countPlus.style.display = "none";
+             countMoins.style.display ="none";
+             itemDisplay.style.display = "none";
+             countItem.style.display = "none";
 
          }
      }
 
      page9.append(itemList);
 
-    var totalDisplay = document.createElement("div");
-    totalDisplay.innerHTML = "Your total is $" +  totalCost;
-    page9.append(totalDisplay);
 
-
-
-
-    for ( var qw = 0; qw < aisleCount; qw ++){
-
-        // create button for each aisle and enter each aisle with button
-
-        var bk = document.createElement("BR");
-        page9.append(bk);
-
-
-        var newBtn = document.createElement('button');
-        newBtn.innerText = 'enter ' + grocery_shop.aisles[qw].name + " aisle";
-        newBtn.id = "aisle" + grocery_shop.aisles[qw].name;
-        newBtn.classList.add('btn', 'btn-primary');
-        newBtn.type = 'submit';
-        newBtn.myAisle = qw;
-
-        newBtn.addEventListener('click', changeAisle, false);
-
-        function changeAisle(evt) {
-            var newAisle = evt.target.myAisle;
-            inAisle = evt.target.myAisle;
-
-            for (var lll = 0; lll < aisleCount; lll++) {
-                if (lll === newAisle) {
-                   // alert(lll.toString());
-                    var divsToShow = document.getElementsByClassName(lll.toString()); //divsToHide is an array
-                    //alert(divsToShow.toString());
-                    for (let i = 0; i < divsToShow.length; i++) {
-                        //divsToShow[i].style.visibility = "visible"; // or
-                        divsToShow[i].style.display = "inline"; // depending on what you're doing
-                    }
-
-                }
-
-                else {
-                   // alert(lll.toString());
-                    var divsToHide = document.getElementsByClassName(lll.toString()); //divsToHide is an array
-                   // alert(divsToShow.toString());
-                    for (let i = 0; i < divsToHide.length; i++) {
-                        divsToHide[i].style.display = "none"; // or
-                      //  divsToHide[i].style.visibility = "hidden"; // depending on what you're doing
-                    }
-
-                }
-
-
-            }
-        }
-
-
-
-
-
-
-        page9.append(newBtn);
-
-
-
-
-
-
-
-        /*
-
-        newBtn.addEventListener('click', function (event) {
-
-            if (aisle.name === "fruit and veg") { currentAisle = 0;}
-            if (aisle.name === "bakery") { currentAisle = 1;}
-            if (aisle.name === "biscuits") { currentAisle = 2;}
-            aisleMsg.innerHTML = "";
-            aisleMsg.innerHTML = "Welcome to the  " + aisle.name + " aisle";
-            itemList.innerHTML = "";
-            //alert(currentAisle);
-
-
-        });
-
-
-         */
-
-
-
-    }
 
 
 
