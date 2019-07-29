@@ -27,12 +27,12 @@ addEventToButton(2, function (event) {
 
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
     document.getElementById('renderhere').innerHTML = "";
-    var Guesses = 0; // number of attempted guesses 
-    var num = Math.floor(Math.random() * 20) + 1; // random number chosen
+    let Guesses = 0; // number of attempted guesses
+    let num = Math.floor(Math.random() * 20) + 1; // random number chosen
 
     const htmlFormElement = document.createElement('form');
 
-    var gg = document.createElement("SPAN");
+    const gg = document.createElement("SPAN");
     gg.setAttribute("data-output", "guesses");
     htmlFormElement.appendChild(gg);
 
@@ -91,7 +91,7 @@ addEventToButton(2, function (event) {
                         Guesses++;
                         htmlFormElement.append(submitBtn);
 
-                    } else if (n == num) {
+                    } else if (n === num) {
                         /// guessed correctly 
                         document
                             .getElementById('renderhere')
@@ -100,7 +100,7 @@ addEventToButton(2, function (event) {
                     }
 
                     /// ran out of guesses 
-                    if (Guesses == 5 && n != num) {
+                    if (Guesses === 5 && n != num) {
                         document
                             .getElementById('renderhere')
                             .innerHTML = '<p> You ran out of guesses.  I guessed ' + num + '</p>'
@@ -148,42 +148,42 @@ addEventToButton(3, function (event) {
 
     // initial to do list
 
-    var cars = ["Assessment one", "Assesment two", "Boids"];
+    const toDoList = ["Assessment one", "Assesment two", "Boids"];
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
     document.getElementById('renderhere').innerHTML = "";
 
     //create title and delete button and add button on their own element
 
-    var page3 = document.createElement('div');
+    const page3 = document.createElement('div');
 
 
-    var title = document.createElement('div');
+    const title = document.createElement('div');
     title.textContent = "To do list. To add items fill out field and hit add button. To Delete check box below and hit delete ";
     title.setAttribute('class', 'note');
     page3.append(title);
 
-    var deleteBtn3 = document.createElement('button');
+    const deleteBtn3 = document.createElement('button');
     deleteBtn3.innerText = 'Delete';
     deleteBtn3.classList.add('btn', 'btn-primary');
     deleteBtn3.type = 'submit';
     page3.append(deleteBtn3);
 
-    var addBtn3 = document.createElement('button');
+    const addBtn3 = document.createElement('button');
     addBtn3.innerText = 'Add';
     addBtn3.classList.add('btn', 'btn-primary');
     addBtn3.type = 'submit';
     page3.append(addBtn3);
 
-    var elements = document.createElement('div');
+    const elements = document.createElement('div');
 
 
     /// sort through array and generate title and button for each item in list
-    for (var c in cars) {
+    for (const c in toDoList) {
 
         var newElement = document.createElement('div');
         newElement.id = 'item' + c;
         newElement.className = "car";
-        newElement.innerHTML = cars[c];
+        newElement.innerHTML = toDoList[c];
         elements.appendChild(newElement);
         var x = document.createElement("INPUT");
         x.id = 'chkBut' + c;
@@ -194,12 +194,12 @@ addEventToButton(3, function (event) {
     }
 
     // entry form for to do list
-    var entry = document.createElement("FORM");
+    const entry = document.createElement("FORM");
     entry.setAttribute("id", "myForm");
     page3.append(entry);
 
 
-    var y = document.createElement("INPUT");
+    const y = document.createElement("INPUT");
     y.setAttribute("type", "text");
     y.setAttribute("value", "New To do Item");
     entry.appendChild(y);
@@ -215,7 +215,7 @@ addEventToButton(3, function (event) {
 
         let removeValFromIndex = []; // array to store values to be removed 
 
-        for (var d in cars) {
+        for (var d in toDoList) {
 
             // check for checked buttons and add to array of indexes to be removed 
             var i = 'chkBut' + d;
@@ -227,10 +227,10 @@ addEventToButton(3, function (event) {
 
         // remove checked items from list 
         for (var i = removeValFromIndex.length - 1; i >= 0; i--) {
-            cars.splice(removeValFromIndex[i], 1);
+            toDoList.splice(removeValFromIndex[i], 1);
         }
 
-        // alert(cars.toString());
+        // alert(toDoList.toString());
 
         var els = document.getElementsByClassName("car");
         while (els.length > 0) {
@@ -238,12 +238,12 @@ addEventToButton(3, function (event) {
         }
 
 
-        for (var c in cars) {
+        for (var c in toDoList) {
 
             var newElement = document.createElement('div');
             newElement.id = 'item' + c;
             newElement.className = "car";
-            newElement.innerHTML = cars[c];
+            newElement.innerHTML = toDoList[c];
             elements.appendChild(newElement);
             var x = document.createElement("INPUT");
             x.id = 'chkBut' + c;
@@ -265,22 +265,22 @@ addEventToButton(3, function (event) {
     addBtn3.addEventListener('click', function (event) {
 
         var txt = y.value;
-        cars.push(txt);
+        toDoList.push(txt);
 
-        //alert(cars.toString());
+        //alert(toDoList.toString());
 
         var els = document.getElementsByClassName("car");
         while (els.length > 0) {
             els[0].parentNode.removeChild(els[0]);
         }
 
-
-        for (var c in cars) {
+        /// rerender the page
+        for (var c in toDoList) {
 
             var newElement = document.createElement('div');
             newElement.id = 'item' + c;
             newElement.className = "car";
-            newElement.innerHTML = cars[c];
+            newElement.innerHTML = toDoList[c];
             elements.appendChild(newElement);
             var x = document.createElement("INPUT");
             x.id = 'chkBut' + c;
@@ -320,6 +320,7 @@ addEventToButton(3, function (event) {
  That I cannot play on an already played cell
 
 
+ /**** EXCUSE ALL THE CODE DUPLICATION !!! I WAS REALLY LEARNING JAVASCRIPT BUILDING THIS ONE !!!!
  */
 
 
@@ -838,6 +839,10 @@ addEventToButton(4, function (event) {
 
 });
 
+/** THIS BUTTON ALLOWS USER TO DRAW INSIDE A BOX
+ *
+ */
+
 addEventToButton(5, function (event) {
 
 
@@ -936,6 +941,9 @@ addEventToButton(5, function (event) {
 
 });
 
+/** SVG graph of SIN X
+ *
+ */
 
 addEventToButton(6, function (event) {
 
@@ -954,7 +962,10 @@ addEventToButton(6, function (event) {
     svg.setAttribute('height', '480');
     svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
 
-
+    /**
+     * SVG path taken from wikipedia page for sin wav
+     * @type {SVGPathElement}
+     */
     var p = document.createElementNS("http://www.w3.org/2000/svg", 'path');
     p.setAttribute('d', 'M 548.75971,230.81265 L 548.76015,230.8083 M 59.458875,230.81371 L 64.358875,219.11371 L 69.358875,207.41371 L 74.258875,195.91371 L 79.258875,184.51371 L 84.158875,173.21371 L 89.158875,162.21371 L 94.058875,151.51371 L 98.958875,141.11371 L 103.95887,131.11371 L 108.85887,121.41371 L 113.85887,112.21371 L 118.75887,103.51371 L 123.75887,95.313708 L 128.65887,87.613708 L 133.55887,80.513708 L 138.55887,74.113708 L 143.45887,68.213708 L 148.45887,63.013708 L 153.35887,58.513708 L 158.25887,54.713708 L 163.25887,51.513708 L 168.15887,49.113708 L 173.15887,47.513708 L 178.05887,46.613708 L 183.05887,46.413708 L 187.95887,46.913708 L 192.85887,48.213708 L 197.85887,50.313708 L 202.75887,53.013708 L 207.75887,56.513708 L 212.65887,60.713708 L 217.65887,65.513708 L 222.55887,71.113708 L 227.45887,77.213708 L 232.45887,84.013708 L 237.35887,91.413708 L 242.35887,99.313708 L 247.25887,107.81371 L 252.25887,116.81371 L 257.15887,126.21371 L 262.05887,136.01371 L 267.05887,146.31371 L 271.95887,156.81371 L 276.95887,167.71371 L 281.85887,178.81371 L 286.85887,190.21371 L 291.75887,201.71371 L 296.65887,213.31371 L 301.65887,224.91371 L 306.55887,236.71371 L 311.55887,248.31371 L 316.45887,259.91371 L 321.35887,271.41371 L 326.35887,282.81371 L 331.25887,293.91371 L 336.25887,304.81371 L 341.15887,315.31371 L 346.15887,325.61371 L 351.05887,335.41371 L 355.95887,344.81371 L 360.95887,353.81371 L 365.85887,362.31371 L 370.85887,370.21371 L 375.75887,377.61371 L 380.75887,384.41371 L 385.65887,390.51371 L 390.55887,396.11371 L 395.55887,400.91371 L 400.45887,405.11371 L 405.45887,408.61371 L 410.35887,411.31371 L 415.35887,413.41371 L 420.25887,414.71371 L 425.15887,415.21371 L 430.15887,415.01371 L 435.05887,414.11371 L 440.05887,412.51371 L 444.95887,410.11371 L 449.95887,406.91371 L 454.85887,403.11371 L 459.75887,398.61371 L 464.75887,393.41371 L 469.65887,387.51371 L 474.65887,381.11371 L 479.55887,374.01371 L 484.45887,366.31371 L 489.45887,358.11371 L 494.35887,349.41371 L 499.35887,340.21371 L 504.25887,330.51371 L 509.25887,320.51371 L 514.15887,310.11371 L 519.05887,299.41371 L 524.05887,288.41371 L 528.95887,277.11371 L 533.95887,265.71371 L 538.85887,254.21371 L 543.85887,242.51371 L 548.75887,230.81371');
 
@@ -971,19 +982,22 @@ addEventToButton(6, function (event) {
 
 });
 
+/*** button which animates a sin wav and allows the user to change the frequency
+ *
+ */
 
 addEventToButton(7, function (event) {
 
 
-    var myDiv = document.createElement('div');
-    var Kentry = document.createElement("FORM");
+    const myDiv = document.createElement('div');
+    const Kentry = document.createElement("FORM");
     Kentry.setAttribute("id", "myForm");
     Kentry.innerText = "graph of sin ( kx + t ) input value changes k by 0.01 ";
 
     myDiv.appendChild(Kentry);
 
 
-    var kValueInput = document.createElement("INPUT");
+    const kValueInput = document.createElement("INPUT");
     kValueInput.setAttribute("type", "number");
     kValueInput.setAttribute("value", "10");
     Kentry.appendChild(kValueInput);
@@ -997,14 +1011,14 @@ addEventToButton(7, function (event) {
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
     document.getElementById('renderhere').innerHTML = "";
 
-    var animatedSine = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const animatedSine = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     //svg.setAttribute('style', 'border: 1px solid black');
     animatedSine.setAttribute('width', '600');
     animatedSine.setAttribute('height', '400');
     animatedSine.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
 
 
-    var p2 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+    const p2 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
     p2.setAttribute('d', 'M10,10 L50,100 L90,50');
 
     p2.setAttribute('stroke', 'black');
@@ -1059,26 +1073,28 @@ addEventToButton(7, function (event) {
 
 });
 
-
+/**
+ * THIS BUTTON GENERATE A MASTERMIND GAME
+ */
 addEventToButton(8, function (event) {
 
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
     document.getElementById('renderhere').innerHTML = "";
 
-    var title8 = document.createElement("div");
+    const title8 = document.createElement("div");
     title8.innerHTML = "MASTERMIND GAME! The computer will generate a 4 item sequence of 6 colours, and allow the user 8 guesses at the sequence. Duplicates are allowed, blanks are not.\n" +
         "\n" +
         "The computer will then report the result back to the user, with \"W\" being \"Right colour, wrong slot\", \"B\" being \"Right colour, right slot\", and \"E\" being \"wrong color\" (or too many of that colour). ";
     document.getElementById('renderhere').append(title8);
 
 
-    var page8 = document.createElement('div');
+    const page8 = document.createElement('div');
 
 
-    var turnsLeft = 8;
+    var turnsLeft = 8; // we get 8 turns
 
 
-    var challenge = [];
+    var challenge = []; // array to store the randomly generated code
 
     for (let i = 0; i < 4; i++) {
 
@@ -1088,13 +1104,13 @@ addEventToButton(8, function (event) {
     }
 
 
-    var nextGuess = [];
+    var nextGuess = []; // array to store the players next guess
 
-    var nextScore = [0, 0, 0, 0];
-    var allGuesses = [];
-    var allScores = [];
-    var letterCountsInChallenge = [];
-    var letterCountsInGuess = [];
+    var nextScore = [0, 0, 0, 0]; // array to store the players next score
+    var allGuesses = []; // array to store all guesses
+    var allScores = []; // array to store all scores
+    var letterCountsInChallenge = []; // count of how many times each letter occurs in the code
+    var letterCountsInGuess = []; // count of how many times each letter occurs in the current guess
 
     for (let ll = 0; ll < 6; ll++) {
 
@@ -1222,7 +1238,7 @@ addEventToButton(8, function (event) {
 
         CheckWin();
 
-        if (turnsLeft == 1) {
+        if (turnsLeft === 1) {
             page8.append(youLose);
             guessBtn.disabled = true;
             colors.disabled = true;
@@ -1444,6 +1460,9 @@ addEventToButton(8, function (event) {
 
 });
 
+/**
+ * BUTTON WHICH RENDERS A GROCERY SHOP. YOU CAN ENTER DIFFERENT AISLES AND ADD OR REMOVE ITEMS TO THE CART AND TOTAL IS DISPLAYED
+ */
 
 addEventToButton(9, function (event) {
 
@@ -1491,16 +1510,16 @@ addEventToButton(9, function (event) {
 
     document.getElementById('renderhere').childNodes.forEach(value => value.remove());
     document.getElementById('renderhere').innerHTML = "";
-    var page9 = document.createElement("div");
+    const page9 = document.createElement("div");
 
-    var aisleCount = 0;
-    var aisleItems = [];
-    var totalItems = 0;
-    var itemCounts = [];
-    var inAisle = 0;
+    var aisleCount = 0; // how many aisles there are
+    var aisleItems = []; //array to store name of each item
+    var totalItems = 0; // total number of items
+    var itemCounts = []; // array to store cart for each item
+    var inAisle = 0; // which aisle am i in ?
     var itemNames = [];
-    var itemPrices = [];
-    var totalCost = 0;
+    var itemPrices = []; // array to store price for each item
+    var totalCost = 0; // the cart total
 
 
     grocery_shop.aisles.forEach(function (aisle) {
@@ -1555,7 +1574,7 @@ addEventToButton(9, function (event) {
     document.getElementById('renderhere').append(page9);
 
 
-    var totalDisplay = document.createElement("div");
+    const totalDisplay = document.createElement("div");
     totalDisplay.innerHTML = "Your total is $" + totalCost;
     page9.append(totalDisplay);
 
@@ -1576,6 +1595,8 @@ addEventToButton(9, function (event) {
         newBtn.myAisle = qw;
 
         newBtn.addEventListener('click', changeAisle, false);
+
+        /// when aisle changes only available items become visible
 
         function changeAisle(evt) {
             var newAisle = evt.target.myAisle;
@@ -1667,6 +1688,8 @@ addEventToButton(9, function (event) {
 
             countMoins.addEventListener('click', MinusItem, false);
 
+            // subtract current item from cart and update values
+
             function MinusItem(evt) {
 
 
@@ -1697,6 +1720,8 @@ addEventToButton(9, function (event) {
             itemNumber++;
 
             countPlus.addEventListener('click', addItem, false);
+
+            // add item to cart and update values
 
             function addItem(evt) {
                 itemCounts[evt.target.it] = itemCounts[evt.target.it] + 1;
