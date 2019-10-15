@@ -1,3 +1,9 @@
+SCHOOL ASSIGNMENT VANILLA JAVASCRIPT AND HTML DOM ELEMENTS 
+
+hosted at : 
+http://seanwayland.live/games 
+
+
 # Assignment 1
 
 Assessment 1 is a set of exercises using JavaScript and the DOM. For assessment 1, we're not going to use any front end framework, just the DOM API and JavaScript capabilities that modern browsers already provide. Or, in other words, "vanilla JS" - for a satirical take on this, see http://vanilla-js.com/ 
