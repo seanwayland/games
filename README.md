@@ -1,7 +1,7 @@
 SCHOOL ASSIGNMENT VANILLA JAVASCRIPT AND HTML DOM ELEMENTS 
 
 hosted at : 
-http://seanwayland.live/games 
+https://www.seanwayland.com/games/
 
 
 # Assignment 1
